@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 
 const Container = styled.div`
+background-color: #0f1729;
 height: 5rem;
 width: full;
 padding: 0 2rem;
@@ -9,6 +10,12 @@ padding: 0 2rem;
 display: flex;
 align-items: center;
 justify-content: space-between;
+position:fixed;
+top:0;
+left: 0;
+right: 0;
+z-index: 10;
+border-bottom: ${props => (props.color ? `0.1px solid #0ea6ec` : `none`)};
 `;
 
 const Left = styled.div``;
@@ -34,12 +41,18 @@ padding: 0.6rem 1rem;
 background: linear-gradient(90deg, #0ea5ea, #0bd1d1 51%, #0ea5ea);
 background-size: 200%;
 background-position: left;
-font-weight: bold;
+font-weight:400;
 color: white;
 font-size: 0.8rem;
 border-radius: 6px;
 border: none;
 cursor: pointer;
+transition: all 0.3s ease;
+
+&:hover{
+  background-position: right;
+}
+
 `;
 
 
@@ -61,9 +74,20 @@ color: white;
 
 
 const Navbar = () => {
+
+  const [color,setColor] = useState(false);
+
+  const onScrollColorChange = () => {
+    if(window.scrollY > 40){
+      setColor(true);
+    }else{
+      setColor(false);
+    }
+  }
+  window.addEventListener('scroll', onScrollColorChange);
   return (
     <>
-    <Container>
+    <Container color={color}>
         <Left>
            <Logo>Blogify</Logo>
         </Left>
