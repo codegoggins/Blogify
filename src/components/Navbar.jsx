@@ -87,7 +87,7 @@ const Navbar = () => {
   window.addEventListener('scroll', onScrollColorChange);
   return (
     <>
-    <Container color={color}>
+    <Container $color={color}>
         <Left>
            <Logo>Blogify</Logo>
         </Left>
