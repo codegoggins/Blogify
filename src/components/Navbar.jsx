@@ -100,8 +100,8 @@ const Navbar = () => {
         </Left>
         <Center>
             <Item>Home</Item>
-            <Item>Featured</Item>
-            <Item>Recent</Item>
+            <Item>About</Item>
+            <Item>Write</Item>
             <Item>Post</Item>
         </Center>
         <Right>

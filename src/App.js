@@ -6,9 +6,12 @@ import {
 } from "react-router-dom";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
-import Post from "./pages/Post";
 import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
+import Write from "./pages/Write";
+import SingleBlog from "./pages/SingleBlog";
+import Settings from "./pages/Settings";
+import About from "./pages/About";
 
 
 const Layout = () => {
@@ -39,8 +42,20 @@ const router = createBrowserRouter([
         element:<SignUp/>
       },
       {
-        path:'/post',
-        element:<Post/>
+        path:'/write',
+        element:<Write/>
+      },
+      {
+        path:'/about',
+        element:<About/>
+      },
+      {
+        path:'/post/:postId',
+        element:<SingleBlog/>
+      },
+      {
+        path:'/settings',
+        element:<Settings/>
       },
     ]
   },
