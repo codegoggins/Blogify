@@ -27,7 +27,13 @@ justify-content: space-around;
 gap: 2rem;
 `;
 
-const Item = styled.li``;
+const Item = styled.li`
+cursor: pointer;
+transition: all 0.3s ease;
+&:hover{
+color:#0ea5ea;
+}
+`;
 
 const Right = styled.div`
 display:flex;
@@ -62,6 +68,7 @@ border-radius: 50%;
 height: 2.5rem;
 width: 2.5rem;
 cursor: pointer;
+border:2.5px solid #0ea5ea;
 `;
 
 
@@ -93,7 +100,6 @@ const Navbar = () => {
         </Left>
         <Center>
             <Item>Home</Item>
-            <Item>About</Item>
             <Item>Featured</Item>
             <Item>Recent</Item>
             <Item>Post</Item>

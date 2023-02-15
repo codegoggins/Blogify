@@ -71,6 +71,7 @@ height: 2rem;
 width: 2rem;
 object-fit: cover;
 border-radius: 50%;
+border:2.5px solid #0ea5ea;
 `
 const AuthorName = styled.p`
 font-size: 0.7rem;
