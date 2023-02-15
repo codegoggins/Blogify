@@ -56,6 +56,11 @@ text-align: center;
 margin-top: 1rem;
 `;
 
+const LogLink = styled.p`
+display: flex;
+gap: 0.5rem;
+`;
+
 const SignUp = () => {
   return (
     <Container>
@@ -65,6 +70,14 @@ const SignUp = () => {
         <Input placeholder='Email' type='text'/>
         <Input placeholder='Password' type='password'/>
         <Btn>Sign Up</Btn>
+        <LogLink>
+        <span>
+            Already have an account ?
+        </span>
+        <span>
+            <em>login</em>
+        </span>
+        </LogLink>
         </Form>
     </Container>
   )
