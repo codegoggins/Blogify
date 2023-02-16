@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom';
 import styled from 'styled-components'
 
 const Container = styled.div`
@@ -96,13 +97,23 @@ const Navbar = () => {
     <>
     <Container $color={color}>
         <Left>
+          <Link to='/'>
            <Logo>Blogify</Logo>
+          </Link>
         </Left>
         <Center>
+          <Link to='/'>
             <Item>Home</Item>
-            <Item>About</Item>
+          </Link>
+          <Link to='/about'>
+          <Item>About</Item>
+          </Link>
+          <Link to='/write'>
             <Item>Write</Item>
+          </Link>
+          <Link to=''>
             <Item>Post</Item>
+          </Link>
         </Center>
         <Right>
            <Btn>Log In</Btn>

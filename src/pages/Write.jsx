@@ -44,7 +44,6 @@ border-radius: 0.5rem;
 border: none;
 cursor: pointer;
 transition: all 0.3s ease;
-
 &:hover{
   background-position: right;
 }
