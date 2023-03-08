@@ -31,6 +31,16 @@ app.use('/api/users',userRoutes);
 app.use('/api/blogs',blogRoutes);
 app.use('/api/auth',authRoutes);
 
+app.use((err,req,res,next)=>{
+    const status = err.status || 500;
+    const message = err.message || "Something Went Wrong";
+    return res.status(status).json({
+        success:false,
+        message,
+        status
+    })
+});
+
 app.listen(8800,()=>{
     connect();
     console.log("Connected");
