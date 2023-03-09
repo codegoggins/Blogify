@@ -34,7 +34,14 @@ export const getBlog = async (req,res,next) => {
 
 //GET ALL BLOGS
 export const getAllBlogs = async (req,res,next) => {
+    try{
 
+        const blogs = await Blog.find();
+        res.status(200).json(blogs);
+
+    }catch(err){
+        next(err);
+    }
 }
 
 //DELETE A BLOG
