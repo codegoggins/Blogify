@@ -1,10 +1,18 @@
 import { createError } from "../error.js";
 import User from "../models/User.js";
 
-export const getUser = (req,res,next) => {
+// GET USER
+export const getUser = async (req,res,next) => {
+    try{
 
+        const user = await User.findById(req.params.id);
+        res.status(200).json(user);
+    }catch(err){
+        next(err);
+    }
 }
 
+// UPDATE USER
 export const updateUser = async (req,res,next) => {
     if(req.params.id === req.user.id){
         try{
@@ -23,6 +31,7 @@ export const updateUser = async (req,res,next) => {
     }
 }
 
+// DELETE USER
 export const deleteUser = async (req,res,next) => {
     if(req.params.id === req.user.id){
            try{
