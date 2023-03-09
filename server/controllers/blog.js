@@ -64,5 +64,20 @@ export const deleteBlog = async (req,res,next) => {
 
 //UPDATE A BLOG
 export const updateBlog = async (req,res,next) => {
-
+     
+    const blog = await Blog.findById(req.params.id);
+    if(!blog) return next(createError(404,"Blog Not Found"));
+    
+    try{
+        if(req.user.id == blog.userId){
+            const updatedBlog = await Blog.findByIdAndUpdate(req.params.id,{
+                $set:req.body,
+            },{new:true});
+            return res.status(200).json(updatedBlog);
+        }else{
+            return next(createError(403,"You Are Not Allowed To Delete The Blog"));
+        }
+    }catch(err){
+        next(err);
+    }
 }
