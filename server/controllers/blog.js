@@ -1,3 +1,4 @@
+import { createError } from "../error.js";
 import Blog from "../models/Blog.js"
 
 // CREATE A BLOG
@@ -18,7 +19,17 @@ export const createBlog = async (req,res,next) => {
 
 // GET A BLOG
 export const getBlog = async (req,res,next) => {
+    try{
 
+        const blog = await Blog.findById(req.params.id);
+
+        if(!blog) return next(createError(404,"Blog Not Found"));
+
+        res.status(200).json(blog);
+
+    }catch(err){
+        next(err);
+    }
 }
 
 //GET ALL BLOGS
