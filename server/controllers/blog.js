@@ -35,9 +35,8 @@ export const getBlog = async (req,res,next) => {
 //GET ALL BLOGS
 export const getAllBlogs = async (req,res,next) => {
     try{
-
         const blogs = await Blog.find();
-        res.status(200).json(blogs);
+        return res.status(200).json(blogs);
 
     }catch(err){
         next(err);
@@ -46,7 +45,21 @@ export const getAllBlogs = async (req,res,next) => {
 
 //DELETE A BLOG
 export const deleteBlog = async (req,res,next) => {
+    
+    const blog = await Blog.findById(req.params.id);
+    if(!blog) return next(createError(404,"Blog Not Found"));
+    
+    try{
+        if(req.user.id == blog.userId){
+            await Blog.findByIdAndDelete(req.params.id);
+            return res.status(200).json("Blog Has Been Deleted");
+        }else{
+            return next(createError(403,"You Are Not Allowed To Delete The Blog"));
+        }
 
+    }catch(err){
+        next(err);
+    }
 }
 
 //UPDATE A BLOG
