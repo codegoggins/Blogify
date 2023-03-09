@@ -7,6 +7,7 @@ import dotenv from 'dotenv'
 import userRoutes from './routes/user.js'
 import blogRoutes from './routes/blog.js'
 import authRoutes from './routes/auth.js'
+import cookieParser from "cookie-parser";
 
 
 
@@ -25,7 +26,7 @@ const connect = async () => {
     }
 };
 
-
+app.use(cookieParser());
 app.use(express.json());
 app.use('/api/users',userRoutes);
 app.use('/api/blogs',blogRoutes);
