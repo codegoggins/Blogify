@@ -75,9 +75,11 @@ export const updateBlog = async (req,res,next) => {
             },{new:true});
             return res.status(200).json(updatedBlog);
         }else{
-            return next(createError(403,"You Are Not Allowed To Delete The Blog"));
+            return next(createError(403,"You Are Not Allowed To Update The Blog"));
         }
     }catch(err){
         next(err);
     }
 }
+
+

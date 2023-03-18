@@ -1,5 +1,6 @@
 import { createError } from "../error.js";
 import User from "../models/User.js";
+import Blog from "../models/Blog.js"
 
 // GET USER
 export const getUser = async (req,res,next) => {
@@ -43,4 +44,9 @@ export const deleteUser = async (req,res,next) => {
     }else{
         next(createError(403,"You Can Delete Only Your Account"));
     }
+}
+
+// LIKE A BLOG
+export const like = async (req,res,next) => {
+    
 }

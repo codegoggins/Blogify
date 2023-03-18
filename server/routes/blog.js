@@ -7,11 +7,11 @@ const router = express.Router();
 // CREATE A BLOG
 router.post('/',verifyToken,createBlog);
 
-// GET A BLOG
-router.get('/:id',getBlog);
-
 // GET ALL BLOGS
-router.get('/',getAllBlogs);
+router.get('/find/',getAllBlogs);
+
+// GET A BLOG
+router.get('/find/:id',getBlog);
 
 // DELETE A BLOG
 router.delete('/:id',verifyToken,deleteBlog);
