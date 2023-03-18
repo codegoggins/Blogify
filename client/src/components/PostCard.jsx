@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-
+import {Link} from 'react-router-dom'
 
 const PostCard = ({blog}) => {
 
@@ -34,6 +34,7 @@ const PostCard = ({blog}) => {
 
 
   return (
+    <Link to={`/blog/${blog?._id}`}>
     <Container>
         <CardImg src={blog?.blogImg}/>
         <Tags>
@@ -49,6 +50,7 @@ const PostCard = ({blog}) => {
             <PostTime>{formattedDate}</PostTime>
         </CardDetail>
     </Container>
+    </Link>
   )
 }
 

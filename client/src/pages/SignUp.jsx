@@ -1,5 +1,55 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components';
+import {Link} from 'react-router-dom'
+
+const SignUp = () => {
+
+  const [name,setName] = useState("");
+  const [email,setEmail] = useState("");
+  const [password,setPassword] = useState("");
+
+  return (
+    <Container>
+        <Title>Sign Up</Title>
+        <Form>
+        <Input 
+        placeholder='Username' 
+        type='text'
+        onChange={(e)=>setName(e.target.value)}  
+        />
+
+        <Input 
+        placeholder='Email' 
+        type='text'
+        onChange={(e)=>setEmail(e.target.value)}  
+        />
+        <Input 
+        placeholder='Password' 
+        type='password'
+        onChange={(e)=>setPassword(e.target.value)}  
+        />
+        <Btn>Sign Up</Btn>
+        <LogLink>
+        <span>
+            Already have an account ?
+        </span>
+        <span>
+          <Link to='/login'>
+            <em>login</em>
+          </Link>
+        </span>
+        </LogLink>
+        </Form>
+    </Container>
+  )
+}
+
+export default SignUp
+
+
+
+/*<------------------------------------------------------  CSS STYLING --------------------------------------------------------------------->*/
+
 
 const Container = styled.div`
    margin: 5rem auto;
@@ -69,27 +119,3 @@ gap: 0.5rem;
      align-items: center;
 }
 `;
-
-const SignUp = () => {
-  return (
-    <Container>
-        <Title>Sign Up</Title>
-        <Form>
-        <Input placeholder='Name' type='text'/>
-        <Input placeholder='Email' type='text'/>
-        <Input placeholder='Password' type='password'/>
-        <Btn>Sign Up</Btn>
-        <LogLink>
-        <span>
-            Already have an account ?
-        </span>
-        <span>
-            <em>login</em>
-        </span>
-        </LogLink>
-        </Form>
-    </Container>
-  )
-}
-
-export default SignUp

@@ -38,7 +38,9 @@ const RecentCard = ({blog}) => {
   return (
     <Link to={`/blog/${blog?._id}`}>
     <Container>
-        <PostImg src='https://images.pexels.com/photos/1743165/pexels-photo-1743165.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'/>
+        <PostImg>
+        <img src={blog?.blogImg} alt="" />
+        </PostImg>
         <PostContent>
              <PostTitle>{blog?.title}</PostTitle>
              <PostDesc>{blog?.desc}</PostDesc>
@@ -76,6 +78,7 @@ display: flex;
 gap: 1rem;
 align-items: center;
 margin: 0 auto;
+height:auto;
 
 
 @media(max-width:768px){
@@ -83,17 +86,20 @@ margin: 0 auto;
   border-radius: 2rem;
   border: 1px solid #0ea5ea;
   flex-direction: column;
-  height: 35rem;
 }
 
 `;
 
-const PostImg = styled.img`
+const PostImg = styled.div`
 flex: 2;
 height: 12rem;
-width: 100%;
-object-fit: cover;
-border-radius: 1.5rem;
+
+img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 1.5rem;
+}
 `
 
 const PostContent = styled.div`
@@ -101,11 +107,6 @@ flex: 6;
 display: flex;
 flex-direction: column;
 gap: 0.7rem;
-
-@media(max-width:768px){
-  flex: 1;
-}
-
 `;
 
 const PostTitle = styled.p`

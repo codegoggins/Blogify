@@ -1,5 +1,49 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components';
+import {Link} from 'react-router-dom'
+
+
+
+const Login = () => {
+
+  const [name,setName] = useState("");
+  const [password,setPassword] = useState("");
+  
+  return (
+    <Container>
+        <Title>Log In</Title>
+        <Form>
+        <Input 
+        placeholder='Username' 
+        type='text'
+        onChange={(e)=>setName(e.target.value)}  
+        />
+        <Input 
+        placeholder='Password' 
+        type='password'
+        onChange={(e)=>setPassword(e.target.value)}  
+        />
+        <Btn>Login</Btn>
+        <RegLink>
+        <span>
+            Don't have an account ?
+        </span>
+        <span>
+          <Link to='/signup'>
+            <em>sign up</em>
+          </Link>
+        </span>
+        </RegLink> 
+        </Form>
+    </Container>
+  )
+}
+
+export default Login
+
+
+
+/*<------------------------------------------------------  CSS STYLING --------------------------------------------------------------------->*/
 
 const Container = styled.div`
    margin: 5rem auto;
@@ -67,26 +111,3 @@ gap: 0.5rem;
      align-items: center;
 }
 `;
-
-const Login = () => {
-  return (
-    <Container>
-        <Title>Log In</Title>
-        <Form>
-        <Input placeholder='Email' type='text'/>
-        <Input placeholder='Password' type='password'/>
-        <Btn>Login</Btn>
-        <RegLink>
-        <span>
-            Don't have an account ?
-        </span>
-        <span>
-            <em>sign up</em>
-        </span>
-        </RegLink> 
-        </Form>
-    </Container>
-  )
-}
-
-export default Login

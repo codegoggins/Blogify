@@ -2,6 +2,38 @@ import React from 'react'
 import styled from 'styled-components'
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
 
+
+
+
+const Settings = () => {
+  return (
+    <Container>
+       <Title>Settings</Title>
+       <Center>
+       <Image src='https://images.pexels.com/photos/2777898/pexels-photo-2777898.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' />
+       <Form>
+       <Label htmlFor='createFile'>
+          <AddAPhotoIcon/>
+          <p>Upload an Image</p>
+       </Label>
+       <Input type='file' id='createFile' style={{display:"none"}}/>
+       <Input type='text' placeholder='Name'/>
+       <Input type='email' placeholder='Email'/>
+       <Input type='password' placeholder='Password'/>
+       <CreateBtn>Update</CreateBtn>
+       </Form>
+       </Center>
+    </Container>
+  )
+}
+
+export default Settings 
+
+
+
+
+/*<------------------------------------------------------  CSS STYLING --------------------------------------------------------------------->*/
+
 const Container = styled.div`
 padding: 6rem 5rem;
 color: #0ea5ea;
@@ -108,29 +140,3 @@ border-radius: 0.5rem;
   color: white;
 }
 `;
-
-
-
-const Settings = () => {
-  return (
-    <Container>
-       <Title>Settings</Title>
-       <Center>
-       <Image src='https://images.pexels.com/photos/2777898/pexels-photo-2777898.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' />
-       <Form>
-       <Label htmlFor='createFile'>
-          <AddAPhotoIcon/>
-          <p>Upload an Image</p>
-       </Label>
-       <Input type='file' id='createFile' style={{display:"none"}}/>
-       <Input type='text' placeholder='Name'/>
-       <Input type='email' placeholder='Email'/>
-       <Input type='password' placeholder='Password'/>
-       <CreateBtn>Update</CreateBtn>
-       </Form>
-       </Center>
-    </Container>
-  )
-}
-
-export default Settings 

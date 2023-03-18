@@ -5,21 +5,6 @@ import Recent from '../components/Recent';
 import Blogs from '../components/Blogs';
 import Popup from '../components/Popup';
 
-const Container = styled.div`
-
-`
-
-const Top = styled.div`
-  margin-top:5rem;
-  width: 100%;
-  padding:1rem;
-`;
-
-const Image = styled.img`
-object-fit: cover;
-border-radius: 1rem;
-width: 100%;
-`;
 
 const Home = () => {
   return (
@@ -36,3 +21,19 @@ const Home = () => {
 }
 
 export default Home
+
+
+
+/*<------------------------------------------------------  CSS STYLING --------------------------------------------------------------------->*/
+
+const Container = styled.div``
+
+const Top = styled.div`
+  margin-top:5rem;
+  width: 100%;
+`;
+
+const Image = styled.img`
+object-fit: cover;
+width: 100%;
+`;
