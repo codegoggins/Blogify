@@ -7,7 +7,12 @@ const Container = styled.div`
    width: 20rem;
    border: 1px solid #7d91b0;
    border-radius: 1rem;
+   @media(max-width:768px){
+     width: 16rem;
+   }
 `;
+
+
 const Form = styled.form`
 display: flex;
 flex-direction: column;
@@ -59,6 +64,10 @@ margin-top: 1rem;
 const LogLink = styled.p`
 display: flex;
 gap: 0.5rem;
+@media(max-width:768px){
+     flex-direction: column;
+     align-items: center;
+}
 `;
 
 const SignUp = () => {

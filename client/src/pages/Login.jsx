@@ -7,6 +7,9 @@ const Container = styled.div`
    width: 20rem;
    border: 1px solid #7d91b0;
    border-radius: 1rem;
+   @media(max-width:768px){
+     width: 15rem;
+   }
 `;
 const Form = styled.form`
 display: flex;
@@ -59,6 +62,10 @@ margin-top: 1rem;
 const RegLink = styled.p`
 display: flex;
 gap: 0.5rem;
+@media(max-width:768px){
+     flex-direction: column;
+     align-items: center;
+}
 `;
 
 const Login = () => {
