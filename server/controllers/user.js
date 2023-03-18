@@ -67,5 +67,18 @@ export const like = async (req,res,next) => {
 
 // DISLIKE A BLOG
 export const dislike = async (req,res,next) => {
-    
+     const id = req.user.id;
+     const blogId = req.params.blogId;
+
+     try{
+
+        await Blog.findByIdAndUpdate(blogId,{
+            $addToSet:{dislikes:id},
+            $pull:{likes:id}
+        })
+        return res.status(200).json("Blog Disliked");
+
+     }catch(err){
+        next(err);
+     }
 }
