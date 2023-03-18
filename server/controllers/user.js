@@ -49,4 +49,18 @@ export const deleteUser = async (req,res,next) => {
 // LIKE A BLOG
 export const like = async (req,res,next) => {
     
+    const id = req.user.id;
+    const blogId = req.params.blogId;
+    
+    try{
+
+        await Blog.findByIdAndUpdate(blogId,{
+            $addToSet:{likes:id},
+            $pull:{dislikes:id}
+        })
+        return res.status(200).json("Blog Liked");
+
+    }catch(err){
+        next(err);
+    }
 }

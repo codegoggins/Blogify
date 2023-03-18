@@ -14,6 +14,6 @@ router.delete('/:id',verifyToken,deleteUser);
 router.get('/:id',getUser);
 
 // LIKE BLOG
-router.put('/like/:blogId',like)
+router.put('/like/:blogId',verifyToken,like)
 
 export default router;
