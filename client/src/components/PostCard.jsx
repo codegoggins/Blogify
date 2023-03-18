@@ -31,7 +31,7 @@ const Container = styled.div`
 background-color:#131b30;
 border: 1px solid #223044;
 padding: 1rem;
-width:full;
+width:100%;
 height: auto;
 display: flex;
 flex-direction: column;
