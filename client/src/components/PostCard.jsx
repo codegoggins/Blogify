@@ -1,19 +1,52 @@
-import React from 'react'
+import axios from 'axios';
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 
 
-const PostCard = () => {
+const PostCard = ({blog}) => {
+
+  const [author,setAuthor] = useState(null);
+  
+
+  // FETCH BLOG FOR BLOG
+  useEffect(()=>{
+    if(blog){
+      const fetchAuthor = async () => {
+        try {
+          const response = await axios.get(`/users/${blog?.userId}`);
+          setAuthor(response.data);
+        } catch (error) {
+          console.error(error);
+        }
+      };
+  
+      fetchAuthor();
+    }
+  },[blog]);
+
+  //FORMAT DATE FOR BLOG
+  const formattedDate = new Date(blog?.createdAt).toLocaleString('en-US', { 
+    year: 'numeric', 
+    month: 'long', 
+    day: 'numeric' 
+      }
+  );
+
+
   return (
     <Container>
-        <CardImg src='https://images.pexels.com/photos/8299959/pexels-photo-8299959.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'/>
+        <CardImg src={blog?.blogImg}/>
         <Tags>
-            <Tag>Travel</Tag>
-            <Tag>Lifestyle</Tag>
+          {
+            blog?.tags.map((tag)=>(
+            <Tag key={tag}>{tag}</Tag>
+            ))
+          }
         </Tags>
-        <CardTitle>The journey of a thousand miles begins with a single step</CardTitle>
+        <CardTitle>{blog?.title}</CardTitle>
         <CardDetail>
-            <Author>Nilay Singh</Author>
-            <PostTime>14 Feb , 2023</PostTime>
+            <Author>{author?.name}</Author>
+            <PostTime>{formattedDate}</PostTime>
         </CardDetail>
     </Container>
   )

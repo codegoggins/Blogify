@@ -1,20 +1,35 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import PostCard from './PostCard'
-
+import axios from 'axios';
 
 const Blogs = () => {
+
+  const [blogs,setBlogs] = useState([]);
+  const [error,setError] = useState(false);
+
+  useEffect(()=>{
+    const fetchBlogs = async () => {
+       try{
+        const response = await axios.get('/blogs/random');
+        setBlogs(response.data);
+       }catch(err){
+          setError(true);
+       }
+    }
+    fetchBlogs();
+  },[]);
+
   return (
     <Container>
-        <Posts>
-        <PostCard/>
-        <PostCard/>
-        <PostCard/>
-        <PostCard/>
-        </Posts>
-        <ShowMoreBtn>
-            Show More
-        </ShowMoreBtn> 
+    <CardContainer>
+        {
+           blogs.map((blog)=>(
+              <PostCard key={blog._id} blog={blog}/>
+           ))
+        }
+    </CardContainer>
+    <ShowMoreBtn>Show More</ShowMoreBtn>
     </Container>
   )
 }
@@ -30,15 +45,25 @@ const Container = styled.div`
 display: flex;
 flex-direction: column;
 gap: 1rem;
-align-items: center;
 `;
 
-const Posts = styled.div`
-display: flex;
-flex-direction: column;
-gap: 2rem;
-width: 100%;
+const CardContainer = styled.div`
+display: grid;
 padding: 1rem;
+grid-template-columns:repeat(3,1fr);
+gap: 1.5rem;
+
+@media(max-width:768px){
+  grid-template-columns:100%;
+}
+
+`;
+
+const Heading = styled.p`
+font-size: 2rem;
+color:#0ea5ea;
+font-weight: bold;
+text-align: center;
 `;
 
 
