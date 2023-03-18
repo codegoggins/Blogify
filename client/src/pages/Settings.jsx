@@ -28,11 +28,28 @@ border-radius: 0.5rem;
   color: white;
 }
 `;
+
+const Center = styled.div`
+padding: 1rem;
+display: flex;
+align-items: center;
+@media(max-width:768px){
+flex-direction: column;
+}
+`;
+
 const Image = styled.img`
+flex: 1;
 margin-top: 2rem;
 object-fit: cover;
 width:100%;
 border-radius: 0.5rem;
+height:25rem;
+width:25rem;
+@media(max-width:768px){
+    height:14rem;
+    width:14rem;
+}
 `;
 
 const Title = styled.h1`
@@ -65,6 +82,7 @@ gap: 1rem;
 width: max-content;
 `;
 const Form = styled.form`
+flex: 1;
 display:flex;
 flex-direction:column;
 padding: 1rem;
@@ -91,10 +109,13 @@ border-radius: 0.5rem;
 }
 `;
 
+
+
 const Settings = () => {
   return (
     <Container>
        <Title>Settings</Title>
+       <Center>
        <Image src='https://images.pexels.com/photos/2777898/pexels-photo-2777898.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' />
        <Form>
        <Label htmlFor='createFile'>
@@ -107,6 +128,7 @@ const Settings = () => {
        <Input type='password' placeholder='Password'/>
        <CreateBtn>Update</CreateBtn>
        </Form>
+       </Center>
     </Container>
   )
 }
