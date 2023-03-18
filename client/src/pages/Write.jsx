@@ -5,6 +5,12 @@ import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
 const Container = styled.div`
 padding: 6rem 5rem;
 color: #0ea5ea;
+
+@media(max-width:768px){
+margin-top: 5rem;
+padding:1rem;
+}
+
 `;
 const Input = styled.input`
 padding: 1rem;
