@@ -92,3 +92,14 @@ export const getRandomBlogs = async (req,res,next) => {
         next(err);
     }
 };
+
+// GET TRENDING BLOGS
+export const getTrendingBlogs = async (req,res,next) => {
+
+    try{
+        const blogs = await Blog.find().sort({likes:-1});
+        return res.status(200).json(blogs);
+    }catch(err){
+        next(err);
+    }
+};
