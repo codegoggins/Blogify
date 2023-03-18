@@ -1,6 +1,6 @@
 import express from 'express';
 import { verifyToken } from '../verifyToken.js';
-import {createBlog,updateBlog,deleteBlog,getBlog,getAllBlogs} from '../controllers/blog.js'
+import {createBlog,updateBlog,deleteBlog,getBlog,getAllBlogs,getRandomBlogs} from '../controllers/blog.js'
 
 const router = express.Router();
 
@@ -18,6 +18,11 @@ router.delete('/:id',verifyToken,deleteBlog);
 
 // UPDATE A BLOG
 router.put('/:id',verifyToken,updateBlog);
+
+// GET RANDOM BLOGS
+router.get('/random',getRandomBlogs);
+
+
 
 
 export default router;

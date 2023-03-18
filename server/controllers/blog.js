@@ -82,4 +82,13 @@ export const updateBlog = async (req,res,next) => {
     }
 }
 
+// GET RANDOM BLOGS
+export const getRandomBlogs = async (req,res,next) => {
 
+    try{
+        const blogs = await Blog.aggregate([{$sample:{size:1}}]);
+        return res.status(200).json(blogs);
+    }catch(err){
+        next(err);
+    }
+};
