@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-
+import {Link} from 'react-router-dom'
 
 
 
@@ -36,6 +36,7 @@ const RecentCard = ({blog}) => {
 
 
   return (
+    <Link to={`/blog/${blog?._id}`}>
     <Container>
         <PostImg src='https://images.pexels.com/photos/1743165/pexels-photo-1743165.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'/>
         <PostContent>
@@ -57,6 +58,7 @@ const RecentCard = ({blog}) => {
              </PostDetails>
         </PostContent>
     </Container>
+    </Link>
   )
 }
 

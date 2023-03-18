@@ -1,7 +1,68 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components';
 import CreateIcon from '@mui/icons-material/Create';
 import DeleteIcon from '@mui/icons-material/Delete';
+import { useLocation } from 'react-router-dom';
+import axios from 'axios'
+
+const SingleBlog = () => {
+
+  // CURRENT BLOG ID
+  const path = useLocation().pathname.split('/')[2];
+
+  const [blog,setBlog] = useState({});
+  const [error,setError] = useState(false);
+  const [author,setAuthor] = useState({});
+
+  useEffect(()=>{
+      const fetchBlogData = async () => {
+          try{
+            const blogRes = await axios.get(`/blogs/find/${path}`);
+            const authorRes = await axios.get(`/users/${blogRes.data.userId}`)
+            setBlog(blogRes.data);
+            setAuthor(authorRes.data);
+          }catch(err){
+              setError(true);
+          }
+      }
+      fetchBlogData();
+  },[path]);
+
+  //FORMAT DATE FOR BLOG
+  const formattedDate = new Date(blog?.createdAt).toLocaleString('en-US', { 
+      year: 'numeric', 
+      month: 'long', 
+      day: 'numeric' 
+        }
+    );
+
+  return (
+    <Container>
+        <Image src={blog?.blogImg}/>
+        <Details>
+            <User>{author.name}</User>
+            <Time>{formattedDate}</Time>
+        </Details>
+        <UpdateAndDelete>
+          <Edit>
+            <CreateIcon/>
+          </Edit>
+          <DeleteBlog>
+            <DeleteIcon/>
+          </DeleteBlog>
+        </UpdateAndDelete>
+        <Title>{blog?.title}</Title>
+        <Desc>{blog?.desc}</Desc>
+    </Container>
+  )
+}
+
+export default SingleBlog
+
+
+
+{/* <------------------------------------------------------ SIDE MENU ---------------------------------------------------------------------> */}
+
 
 const Container = styled.div`
 display: flex;
@@ -17,6 +78,8 @@ color: white;
 `;
 const Image = styled.img`
 border-radius: 1rem;
+height:40rem;
+object-fit:cover;
 `;
 
 const Details = styled.div`
@@ -45,28 +108,3 @@ cursor: pointer;
 `;
 
 const DeleteBlog = styled(Edit)``;
-
-
-const SingleBlog = () => {
-  return (
-    <Container>
-        <Image src='https://images.pexels.com/photos/147411/italy-mountains-dawn-daybreak-147411.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'/>
-        <Details>
-            <User>Nilay Singh</User>
-            <Time>24th Feb , 2023</Time>
-        </Details>
-        <UpdateAndDelete>
-          <Edit>
-            <CreateIcon/>
-          </Edit>
-          <DeleteBlog>
-            <DeleteIcon/>
-          </DeleteBlog>
-        </UpdateAndDelete>
-        <Title>The journey of a thousand miles begins with a single step</Title>
-        <Desc>Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore molestias corrupti dolor facilis cupiditate a. Dolores dolore, molestias veniam neque animi, repellendus, reiciendis sint excepturi exercitationem eveniet ex dolorum ea voluptate quas aliquid temporibus voluptates vitae eum! Ipsa nobis laboriosam deserunt. Omnis libero quisquam nihil debitis dolores voluptatibus provident ullam labore, dolor deleniti ipsam maiores pariatur, animi magnam quibusdam autem. Quod ullam, unde minima vitae, quos ducimus rerum pariatur dolores corporis eum est nemo beatae praesentium maiores esse id repudiandae reprehenderit aspernatur, veniam ab magni quam accusamus exercitationem. Nisi iure reprehenderit placeat quisquam, maxime quibusdam culpa nulla ab qui! Commodi iusto fugiat consequuntur officia. Officiis, dolores animi quidem sapiente totam magnam, fugiat similique illo soluta error ipsam. Porro unde quo odit architecto. Beatae aut reiciendis repudiandae in voluptate ad itaque dolore. Cum nisi repudiandae deleniti quas nobis pariatur totam, facilis magni, ea repellendus velit laboriosam laudantium saepe temporibus numquam. Facilis ad ducimus obcaecati tempore vitae sit velit in dolore dignissimos ab atque, cum, molestias, porro nobis est? Commodi sequi ea esse amet animi mollitia totam, nemo in reprehenderit? Possimus deleniti perspiciatis molestias, ut necessitatibus aliquam quia accusamus beatae natus repudiandae impedit accusantium, corrupti maiores eius neque molestiae corporis rerum doloremque!</Desc>
-    </Container>
-  )
-}
-
-export default SingleBlog
