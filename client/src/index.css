@@ -39,3 +39,7 @@ em{
   background-color: #0ea6ec;
   border-radius:200px;
 }
+
+.blur {
+  filter: blur(5px);
+}
