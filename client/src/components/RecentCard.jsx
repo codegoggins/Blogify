@@ -3,16 +3,25 @@ import styled from 'styled-components'
 
 const Container = styled.div`
 display: flex;
-align-items: center;
 gap: 1rem;
-width: 50rem;
-height:auto;
+align-items: center;
+margin: 0 auto;
+
+
+@media(max-width:768px){
+  padding: 1rem;
+  border-radius: 2rem;
+  border: 1px solid #0ea5ea;
+  flex-direction: column;
+  height: 35rem;
+}
+
 `;
 
 const PostImg = styled.img`
 flex: 2;
 height: 12rem;
-width: full;
+width: 100%;
 object-fit: cover;
 border-radius: 1.5rem;
 `
@@ -22,6 +31,11 @@ flex: 6;
 display: flex;
 flex-direction: column;
 gap: 0.7rem;
+
+@media(max-width:768px){
+  flex: 1;
+}
+
 `;
 
 const PostTitle = styled.p`

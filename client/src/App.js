@@ -50,7 +50,7 @@ const router = createBrowserRouter([
         element:<About/>
       },
       {
-        path:'/post/:postId',
+        path:'/:postId',
         element:<SingleBlog/>
       },
       {

@@ -13,6 +13,14 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  @media(max-width:768px){
+    flex-direction: column;
+    height: 8rem;
+    text-align: center;
+    padding: 1rem;
+  }
+
 `;
 
 const Logo = styled.h1`

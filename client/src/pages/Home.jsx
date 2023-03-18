@@ -5,14 +5,15 @@ import Recent from '../components/Recent';
 import Blogs from '../components/Blogs';
 
 const Container = styled.div`
-padding: 6rem 5rem;
-display: flex;
-flex-direction: column;
-gap: 2rem;
+
 `
 
 const Top = styled.div`
+  margin-top:5rem;
+  width: 100%;
+  padding:1rem;
 `;
+
 const Image = styled.img`
 object-fit: cover;
 border-radius: 1rem;
@@ -31,6 +32,5 @@ const Home = () => {
     </Container>
   )
 }
-
 
 export default Home

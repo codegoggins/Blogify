@@ -3,21 +3,26 @@ import styled from 'styled-components'
 import RecentCard from './RecentCard';
 
 const Container = styled.div`
-display: flex;
-flex-direction: column;
-gap: 1.5rem;
+padding: 1rem;
 `;
 
 const Heading = styled.p`
 font-size: 2rem;
 color:#0ea5ea;
 font-weight: bold;
+text-align: center;
+margin-bottom: 2rem;
 `;
 
 const RecentBlogContainer = styled.div`
 display:flex;
 flex-direction: column;
 gap: 1rem;
+
+@media(max-width:768px){
+  gap: 3rem;
+}
+
 `;
 
 

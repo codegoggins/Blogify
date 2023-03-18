@@ -5,13 +5,14 @@ const Container = styled.div`
 background-color:#131b30;
 border: 1px solid #223044;
 padding: 1rem;
-width:auto;
+width:100%;
 height: auto;
 display: flex;
 flex-direction: column;
 justify-content: space-between;
 gap: 0.5rem;
 border-radius: 1rem;
+margin: 0 auto;
 `;
 
 const CardImg = styled.img`

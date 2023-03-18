@@ -6,13 +6,17 @@ const Container = styled.div`
 display: flex;
 flex-direction: column;
 gap: 1rem;
-/* align-items: center; */
+align-items: center;
 `;
 
 const Posts = styled.div`
 display: flex;
 flex-direction: column;
-gap: 2rem;`;
+gap: 2rem;
+width: 100%;
+padding: 1rem;
+`;
+
 
 const ShowMoreBtn = styled.button`
 width: max-content;
