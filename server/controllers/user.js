@@ -64,3 +64,8 @@ export const like = async (req,res,next) => {
         next(err);
     }
 }
+
+// DISLIKE A BLOG
+export const dislike = async (req,res,next) => {
+    
+}
