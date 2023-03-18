@@ -1,25 +1,58 @@
-import React from 'react'
+import axios from 'axios';
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 
 
 
 
-const RecentCard = () => {
+const RecentCard = ({blog}) => {
+
+  const [author,setAuthor] = useState(null);
+  
+
+  // FETCH BLOG FOR BLOG
+  useEffect(()=>{
+    if(blog){
+      const fetchAuthor = async () => {
+        try {
+          const response = await axios.get(`/users/${blog?.userId}`);
+          setAuthor(response.data);
+        } catch (error) {
+          console.error(error);
+        }
+      };
+  
+      fetchAuthor();
+    }
+  },[blog]);
+
+  //FORMAT DATE FOR BLOG
+  const formattedDate = new Date(blog?.createdAt).toLocaleString('en-US', { 
+    year: 'numeric', 
+    month: 'long', 
+    day: 'numeric' 
+      }
+  );
+
+
   return (
     <Container>
         <PostImg src='https://images.pexels.com/photos/1743165/pexels-photo-1743165.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'/>
         <PostContent>
-             <PostTitle>Helpful Tips for Freelancers</PostTitle>
-             <PostDesc>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ullam, suscipit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas quia voluptas voluptate repellendus porro officia repudiandae ducimus, quae sapiente perferendis.</PostDesc>
+             <PostTitle>{blog?.title}</PostTitle>
+             <PostDesc>{blog?.desc}</PostDesc>
              <Tags>
-                <Tag>Freelance</Tag>
-                <Tag>Finance</Tag>
+                {
+                  blog?.tags.map((tag)=>(
+                  <Tag key={tag}>{tag}</Tag>
+                  ))
+                }
              </Tags>
              <PostDetails>
-                <PostDate>23 Feb , 2023</PostDate>
+                <PostDate>{formattedDate}</PostDate>
                 <Author>
-                    <AuthorImg src='https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'/>
-                    <AuthorName>Nilay</AuthorName>
+                    <AuthorImg src={author?.profileImg}/>
+                    <AuthorName>{author?.name}</AuthorName>
                 </Author>
              </PostDetails>
         </PostContent>

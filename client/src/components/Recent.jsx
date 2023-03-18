@@ -1,20 +1,36 @@
-import React from 'react'
+import axios from 'axios';
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import RecentCard from './RecentCard';
 
 
 const Recent = () => {
+
+  const [blogs,setBlogs] = useState([]);
+  const [error,setError] = useState(false);
+
+  useEffect(()=>{
+    const fetchBlogs = async () => {
+       try{
+        const response = await axios.get('/blogs/recent');
+        setBlogs(response.data);
+       }catch(err){
+          setError(true);
+       }
+    }
+    fetchBlogs();
+  },[]);
+
+
   return (
       <Container>
           <Heading>Recent Blogs</Heading>
           <RecentBlogContainer>
-               <RecentCard/>
-               <RecentCard/>
-               <RecentCard/>
-               <RecentCard/>
-               <RecentCard/>
-               <RecentCard/>
-               <RecentCard/>
+          {
+            blogs.map((blog)=>(
+               <RecentCard key={blog._id} blog={blog}/>
+            ))
+          }
           </RecentBlogContainer>
       </Container>
   )
@@ -38,9 +54,9 @@ margin-bottom: 2rem;
 `;
 
 const RecentBlogContainer = styled.div`
-display:flex;
-flex-direction: column;
-gap: 1rem;
+display:grid;
+grid-template-columns: 1fr;
+gap: 2rem;
 
 @media(max-width:768px){
   gap: 3rem;
