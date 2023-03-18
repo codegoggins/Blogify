@@ -103,3 +103,14 @@ export const getTrendingBlogs = async (req,res,next) => {
         next(err);
     }
 };
+
+// GET RECENT BLOGS
+export const getRecentBlogs = async (req,res,next) => {
+    try{
+        const blogs = await Blog.find().sort({createdAt:-1});
+        return res.status(200).json(blogs);
+    }catch(err){
+        next(err);
+    }
+};
+

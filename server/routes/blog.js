@@ -1,6 +1,6 @@
 import express from 'express';
 import { verifyToken } from '../verifyToken.js';
-import {createBlog,updateBlog,deleteBlog,getBlog,getAllBlogs,getRandomBlogs,getTrendingBlogs} from '../controllers/blog.js'
+import {createBlog,updateBlog,deleteBlog,getBlog,getAllBlogs,getRandomBlogs,getTrendingBlogs,getRecentBlogs} from '../controllers/blog.js'
 
 const router = express.Router();
 
@@ -24,6 +24,9 @@ router.get('/random',getRandomBlogs);
 
 // GET TRENDING BLOGS
 router.get('/trending',getTrendingBlogs);
+
+// GET RECENT BLOGS
+router.get('/recent',getRecentBlogs);
 
 
 export default router;
