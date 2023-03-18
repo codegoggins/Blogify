@@ -2,6 +2,29 @@ import React from 'react'
 import styled from 'styled-components'
 import RecentCard from './RecentCard';
 
+
+const Recent = () => {
+  return (
+      <Container>
+          <Heading>Recent Blogs</Heading>
+          <RecentBlogContainer>
+               <RecentCard/>
+               <RecentCard/>
+               <RecentCard/>
+               <RecentCard/>
+               <RecentCard/>
+               <RecentCard/>
+               <RecentCard/>
+          </RecentBlogContainer>
+      </Container>
+  )
+}
+
+export default Recent
+
+/*<------------------------------------------------------  CSS STYLING --------------------------------------------------------------------->*/
+
+
 const Container = styled.div`
 padding: 1rem;
 `;
@@ -24,24 +47,3 @@ gap: 1rem;
 }
 
 `;
-
-
-
-const Recent = () => {
-  return (
-      <Container>
-          <Heading>Recent Blogs</Heading>
-          <RecentBlogContainer>
-               <RecentCard/>
-               <RecentCard/>
-               <RecentCard/>
-               <RecentCard/>
-               <RecentCard/>
-               <RecentCard/>
-               <RecentCard/>
-          </RecentBlogContainer>
-      </Container>
-  )
-}
-
-export default Recent

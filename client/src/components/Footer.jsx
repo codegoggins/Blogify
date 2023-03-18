@@ -1,6 +1,20 @@
 import React from 'react'
 import styled from 'styled-components'
 
+
+const Footer = () => {
+  return (
+    <Container>
+        <Logo>Blogify</Logo>
+        <Text>© Developed by <a href='https://github.com/codegoggins'><em>codegoggins.</em></a></Text>
+    </Container>
+  )
+}
+
+export default Footer
+
+/*<------------------------------------------------------  CSS STYLING --------------------------------------------------------------------->*/
+
 const Container = styled.div`
   border:1px solid #223044;
   height: 5rem;
@@ -31,14 +45,3 @@ color: #0ea5ea;
 const Text = styled.p`
  color: white;
 `
-
-const Footer = () => {
-  return (
-    <Container>
-        <Logo>Blogify</Logo>
-        <Text>© Developed by <a href='https://github.com/codegoggins'><em>codegoggins.</em></a></Text>
-    </Container>
-  )
-}
-
-export default Footer

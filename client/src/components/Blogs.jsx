@@ -2,6 +2,30 @@ import React from 'react'
 import styled from 'styled-components'
 import PostCard from './PostCard'
 
+
+const Blogs = () => {
+  return (
+    <Container>
+        <Posts>
+        <PostCard/>
+        <PostCard/>
+        <PostCard/>
+        <PostCard/>
+        </Posts>
+        <ShowMoreBtn>
+            Show More
+        </ShowMoreBtn> 
+    </Container>
+  )
+}
+
+export default Blogs
+
+
+
+
+/*<------------------------------------------------------  CSS STYLING --------------------------------------------------------------------->*/
+
 const Container = styled.div`
 display: flex;
 flex-direction: column;
@@ -37,21 +61,3 @@ transition: all 0.3s ease;
   background-position: right;
 };
 `
-
-const Blogs = () => {
-  return (
-    <Container>
-        <Posts>
-        <PostCard/>
-        <PostCard/>
-        <PostCard/>
-        <PostCard/>
-        </Posts>
-        <ShowMoreBtn>
-            Show More
-        </ShowMoreBtn> 
-    </Container>
-  )
-}
-
-export default Blogs

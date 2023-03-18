@@ -2,6 +2,37 @@ import React, { useState } from 'react'
 import styled from 'styled-components';
 import CloseIcon from '@mui/icons-material/Close';
 
+
+const Popup = () => {
+
+  const [open,setOpen] = useState(true);  
+
+  return (
+    <>
+    {
+    open && (
+        <>
+        <Container>
+        </Container>
+        <Modal>
+        <Close onClick={()=>setOpen(!open)}>
+           <CloseIcon fontSize='large'/>
+        </Close>
+        <Title>Error</Title>
+        <Message>Wrong Credentials !!</Message>
+        </Modal>
+        </>
+      )
+    }
+    </>
+  )
+}
+
+export default Popup
+
+
+/*<------------------------------------------------------  CSS STYLING --------------------------------------------------------------------->*/
+
 const Container = styled.div`
 position:fixed;
 top: 0;
@@ -52,30 +83,3 @@ font-size: 1rem;
 text-align: center;
 margin-top: 2rem;
 `;
-
-const Popup = () => {
-
-  const [open,setOpen] = useState(true);  
-
-  return (
-    <>
-    {
-    open && (
-        <>
-        <Container>
-        </Container>
-        <Modal>
-        <Close onClick={()=>setOpen(!open)}>
-           <CloseIcon fontSize='large'/>
-        </Close>
-        <Title>Error</Title>
-        <Message>Wrong Credentials !!</Message>
-        </Modal>
-        </>
-      )
-    }
-    </>
-  )
-}
-
-export default Popup

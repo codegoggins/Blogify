@@ -30,7 +30,7 @@ const Home = () => {
        <Blogs/>
        <Recent/>
        <Featured/>
-       <Popup/>
+       {/* <Popup/> */}
     </Container>
   )
 }

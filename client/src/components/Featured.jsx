@@ -2,6 +2,26 @@ import React from 'react'
 import PostCard from './PostCard'
 import styled from 'styled-components'
 
+
+const Featured = () => {
+  return (
+    <Container>
+        <Heading>Featured</Heading>
+    <CardContainer>
+        <PostCard/>
+        <PostCard/>
+        <PostCard/>
+        <PostCard/>
+        <PostCard/>
+    </CardContainer>
+    </Container>
+  )
+}
+
+export default Featured
+
+/*<------------------------------------------------------  CSS STYLING --------------------------------------------------------------------->*/
+
 const Container = styled.div`
 display: flex;
 flex-direction: column;
@@ -26,20 +46,3 @@ color:#0ea5ea;
 font-weight: bold;
 text-align: center;
 `;
-
-const Featured = () => {
-  return (
-    <Container>
-        <Heading>Featured</Heading>
-    <CardContainer>
-        <PostCard/>
-        <PostCard/>
-        <PostCard/>
-        <PostCard/>
-        <PostCard/>
-    </CardContainer>
-    </Container>
-  )
-}
-
-export default Featured

@@ -1,6 +1,41 @@
 import React from 'react'
 import styled from 'styled-components'
 
+
+
+
+const RecentCard = () => {
+  return (
+    <Container>
+        <PostImg src='https://images.pexels.com/photos/1743165/pexels-photo-1743165.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'/>
+        <PostContent>
+             <PostTitle>Helpful Tips for Freelancers</PostTitle>
+             <PostDesc>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ullam, suscipit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas quia voluptas voluptate repellendus porro officia repudiandae ducimus, quae sapiente perferendis.</PostDesc>
+             <Tags>
+                <Tag>Freelance</Tag>
+                <Tag>Finance</Tag>
+             </Tags>
+             <PostDetails>
+                <PostDate>23 Feb , 2023</PostDate>
+                <Author>
+                    <AuthorImg src='https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'/>
+                    <AuthorName>Nilay</AuthorName>
+                </Author>
+             </PostDetails>
+        </PostContent>
+    </Container>
+  )
+}
+
+export default RecentCard
+
+
+
+
+
+/*<------------------------------------------------------  CSS STYLING --------------------------------------------------------------------->*/
+
+
 const Container = styled.div`
 display: flex;
 gap: 1rem;
@@ -94,29 +129,3 @@ const PostDate = styled.p`
 font-size: 0.7rem;
 `
 
-
-
-const RecentCard = () => {
-  return (
-    <Container>
-        <PostImg src='https://images.pexels.com/photos/1743165/pexels-photo-1743165.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'/>
-        <PostContent>
-             <PostTitle>Helpful Tips for Freelancers</PostTitle>
-             <PostDesc>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ullam, suscipit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas quia voluptas voluptate repellendus porro officia repudiandae ducimus, quae sapiente perferendis.</PostDesc>
-             <Tags>
-                <Tag>Freelance</Tag>
-                <Tag>Finance</Tag>
-             </Tags>
-             <PostDetails>
-                <PostDate>23 Feb , 2023</PostDate>
-                <Author>
-                    <AuthorImg src='https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'/>
-                    <AuthorName>Nilay</AuthorName>
-                </Author>
-             </PostDetails>
-        </PostContent>
-    </Container>
-  )
-}
-
-export default RecentCard

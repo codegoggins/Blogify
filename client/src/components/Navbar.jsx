@@ -4,6 +4,101 @@ import styled from 'styled-components'
 import CloseIcon from '@mui/icons-material/Close';
 import MenuIcon from '@mui/icons-material/Menu';
 
+
+
+const Navbar = () => {
+
+  const [open,setOpen]  = useState(false);
+
+  return (
+    <>
+    <Container>
+        <Left>
+          <Link to='/'>
+           <Logo>Blogify</Logo>
+          </Link>
+        </Left>
+        <Center>
+          <Link to='/'>
+            <Item>Home</Item>
+          </Link>
+          <Link to='/about'>
+          <Item>About</Item>
+          </Link>
+          <Link to='/write'>
+            <Item>Write</Item>
+          </Link>
+          <Link to=''>
+            <Item>Post</Item>
+          </Link>
+        </Center>
+        <Right>
+          <Link to='/login'>
+           <Btn>Log In</Btn>
+          </Link>
+          <Link to='/signup'>
+           <Btn>Sign Up</Btn>
+          </Link>
+          <Link to='/settings'>
+           <Image src='https://images.pexels.com/photos/5044316/pexels-photo-5044316.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'/>
+          </Link>
+        </Right>
+        <Menu onClick={()=>setOpen(!open)}>
+            <MenuIcon fontSize='large'/>
+        </Menu>
+    </Container>
+
+{/* <------------------------------------------------------ SIDE MENU ---------------------------------------------------------------------> */}
+
+{    
+  open && <SideMenu>
+        <Close onClick={()=>setOpen(!open)}>
+        <CloseIcon fontSize='large'/>
+        </Close>
+        <SideLeft>
+          <Link to='/'>
+           <Logo onClick={()=>setOpen(!open)}>Blogify</Logo>
+          </Link>
+        </SideLeft>
+         <SideCenter>
+            <Link to='/'>
+              <Item onClick={()=>setOpen(!open)}>Home</Item>
+            </Link>
+            <Link to='/about'>
+            <Item onClick={()=>setOpen(!open)}>About</Item>
+            </Link>
+            <Link to='/write'>
+              <Item onClick={()=>setOpen(!open)}>Write</Item>
+            </Link>
+            <Link to=''>
+              <Item onClick={()=>setOpen(!open)}>Post</Item>
+            </Link>
+          </SideCenter>
+          <SideRight>
+          <Link to='/login'>
+           <Btn onClick={()=>setOpen(!open)}>Log In</Btn>
+          </Link>
+          <Link to='/signup'>
+           <Btn onClick={()=>setOpen(!open)}>Sign Up</Btn>
+          </Link>
+          <Link to='/settings'>
+           <Image onClick={()=>setOpen(!open)} src='https://images.pexels.com/photos/5044316/pexels-photo-5044316.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'/>
+          </Link>
+        </SideRight>
+    </SideMenu>
+  }
+
+{/* <------------------------------------------------------ SIDE MENU ---------------------------------------------------------------------> */}
+
+    </>
+  );
+}
+
+export default Navbar
+
+
+/*<------------------------------------------------------  CSS STYLING --------------------------------------------------------------------->*/
+
 const Container = styled.div`
 background-color: #0f1729;
 height: 5rem;
@@ -91,6 +186,10 @@ font-family: 'Bevan', cursive;
 color: white;
 `;
 
+
+/*<------------------------------------------------------ RESPONSIVE SIDE MENU --------------------------------------------------------------------->*/
+
+
 const SideMenu = styled.div`
 position:fixed;
 width: 70vw;
@@ -149,87 +248,3 @@ display: none;
 }
 
 `;
-
-const Navbar = () => {
-
-  const [open,setOpen]  = useState(false);
-
-  return (
-    <>
-    <Container>
-        <Left>
-          <Link to='/'>
-           <Logo>Blogify</Logo>
-          </Link>
-        </Left>
-        <Center>
-          <Link to='/'>
-            <Item>Home</Item>
-          </Link>
-          <Link to='/about'>
-          <Item>About</Item>
-          </Link>
-          <Link to='/write'>
-            <Item>Write</Item>
-          </Link>
-          <Link to=''>
-            <Item>Post</Item>
-          </Link>
-        </Center>
-        <Right>
-          <Link to='/login'>
-           <Btn>Log In</Btn>
-          </Link>
-          <Link to='/signup'>
-           <Btn>Sign Up</Btn>
-          </Link>
-          <Link to='/settings'>
-           <Image src='https://images.pexels.com/photos/5044316/pexels-photo-5044316.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'/>
-          </Link>
-        </Right>
-        <Menu onClick={()=>setOpen(!open)}>
-            <MenuIcon fontSize='large'/>
-        </Menu>
-    </Container>
-{    
-  open && <SideMenu>
-        <Close onClick={()=>setOpen(!open)}>
-        <CloseIcon fontSize='large'/>
-        </Close>
-        <SideLeft>
-          <Link to='/'>
-           <Logo onClick={()=>setOpen(!open)}>Blogify</Logo>
-          </Link>
-        </SideLeft>
-         <SideCenter>
-            <Link to='/'>
-              <Item onClick={()=>setOpen(!open)}>Home</Item>
-            </Link>
-            <Link to='/about'>
-            <Item onClick={()=>setOpen(!open)}>About</Item>
-            </Link>
-            <Link to='/write'>
-              <Item onClick={()=>setOpen(!open)}>Write</Item>
-            </Link>
-            <Link to=''>
-              <Item onClick={()=>setOpen(!open)}>Post</Item>
-            </Link>
-          </SideCenter>
-          <SideRight>
-          <Link to='/login'>
-           <Btn onClick={()=>setOpen(!open)}>Log In</Btn>
-          </Link>
-          <Link to='/signup'>
-           <Btn onClick={()=>setOpen(!open)}>Sign Up</Btn>
-          </Link>
-          <Link to='/settings'>
-           <Image onClick={()=>setOpen(!open)} src='https://images.pexels.com/photos/5044316/pexels-photo-5044316.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'/>
-          </Link>
-        </SideRight>
-    </SideMenu>
-  }
-    </>
-  );
-}
-
-export default Navbar

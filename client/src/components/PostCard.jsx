@@ -1,6 +1,32 @@
 import React from 'react'
 import styled from 'styled-components'
 
+
+const PostCard = () => {
+  return (
+    <Container>
+        <CardImg src='https://images.pexels.com/photos/8299959/pexels-photo-8299959.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'/>
+        <Tags>
+            <Tag>Travel</Tag>
+            <Tag>Lifestyle</Tag>
+        </Tags>
+        <CardTitle>The journey of a thousand miles begins with a single step</CardTitle>
+        <CardDetail>
+            <Author>Nilay Singh</Author>
+            <PostTime>14 Feb , 2023</PostTime>
+        </CardDetail>
+    </Container>
+  )
+}
+
+export default PostCard
+
+
+
+
+/*<------------------------------------------------------  CSS STYLING --------------------------------------------------------------------->*/
+
+
 const Container = styled.div`
 background-color:#131b30;
 border: 1px solid #223044;
@@ -56,23 +82,3 @@ font-size: 0.8rem;
 const Author = styled.p``;
 
 const PostTime = styled.p``;
-
-
-const PostCard = () => {
-  return (
-    <Container>
-        <CardImg src='https://images.pexels.com/photos/8299959/pexels-photo-8299959.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'/>
-        <Tags>
-            <Tag>Travel</Tag>
-            <Tag>Lifestyle</Tag>
-        </Tags>
-        <CardTitle>The journey of a thousand miles begins with a single step</CardTitle>
-        <CardDetail>
-            <Author>Nilay Singh</Author>
-            <PostTime>14 Feb , 2023</PostTime>
-        </CardDetail>
-    </Container>
-  )
-}
-
-export default PostCard
