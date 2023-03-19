@@ -1,26 +1,32 @@
 import React from 'react'
 import styled from 'styled-components'
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
-
+import {useSelector} from 'react-redux'
 
 
 
 const Settings = () => {
+
+  const {currentUser} = useSelector((state)=>state.user);
+  console.log(currentUser);
+
   return (
     <Container>
        <Title>Settings</Title>
        <Center>
-       <Image src='https://images.pexels.com/photos/2777898/pexels-photo-2777898.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' />
+       <Image src={currentUser.profileImg} />
        <Form>
-       <Label htmlFor='createFile'>
+       {/* <Label htmlFor='createFile'>
           <AddAPhotoIcon/>
           <p>Upload an Image</p>
-       </Label>
-       <Input type='file' id='createFile' style={{display:"none"}}/>
-       <Input type='text' placeholder='Name'/>
-       <Input type='email' placeholder='Email'/>
-       <Input type='password' placeholder='Password'/>
-       <CreateBtn>Update</CreateBtn>
+       </Label> */}
+       {/* <Input type='file' id='createFile' style={{display:"none"}}/> */}
+       <Details>{currentUser.name}</Details>
+       <Details>{currentUser.email}</Details>
+       {/* <Input type='text' placeholder={currentUser.name}/> */}
+       {/* <Input type='email' placeholder={currentUser.email}/> */}
+       {/* <Input type='password' placeholder='Password'/> */}
+       {/* <CreateBtn>Update</CreateBtn> */}
        </Form>
        </Center>
     </Container>
@@ -61,6 +67,16 @@ border-radius: 0.5rem;
 }
 `;
 
+const Details = styled.p`
+padding: 1rem;
+background: transparent;
+border: none;
+color:white;
+font-size: 1rem;
+border: 1px solid #0ea5ea;
+border-radius: 0.5rem;
+`;
+
 const Center = styled.div`
 padding: 1rem;
 display: flex;
@@ -76,8 +92,8 @@ margin-top: 2rem;
 object-fit: cover;
 width:100%;
 border-radius: 0.5rem;
-height:25rem;
-width:25rem;
+height:20rem;
+width:20rem;
 @media(max-width:768px){
     height:14rem;
     width:14rem;
