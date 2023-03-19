@@ -3,17 +3,21 @@ import styled from 'styled-components';
 import axios from 'axios';
 import PostCard from '../components/PostCard'
 import Popup from '../components/Popup';
+import {useSelector} from 'react-redux'
 
 const MyPosts = () => {
     const [blogs,setBlogs] = useState([]);
     const [error,setError] = useState(false);
     const [msg,setMsg] = useState("");
+
+    const {currentUser} = useSelector((state)=>state.user);
   
     useEffect(()=>{
       const fetchBlogs = async () => {
          try{
-          const response = await axios.get('/blogs/trending');
-          setBlogs(response.data);
+          const response = await axios.get('/blogs/find/');
+          const currentUserBlogs = response.data.filter((blog) => blog.userId === currentUser._id)
+          setBlogs(currentUserBlogs);
          }catch(err){
             setError(true);
             setMsg("Oops !! Something Went Wrong");
