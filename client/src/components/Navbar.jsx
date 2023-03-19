@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components'
 import CloseIcon from '@mui/icons-material/Close';
 import MenuIcon from '@mui/icons-material/Menu';
+import { useSelector } from 'react-redux';
 
 
 
@@ -10,14 +11,22 @@ const Navbar = () => {
 
   const [open,setOpen]  = useState(false);
 
+  const {currentUser} = useSelector((state)=> state.user);
+
+
   return (
     <>
     <Container>
+
+    {/* <------------------------------------ LEFT ----------------------------------------> */}
         <Left>
           <Link to='/'>
            <Logo>Blogify</Logo>
           </Link>
         </Left>
+
+    {/* <------------------------------------ CENTER ----------------------------------------> */}
+
         <Center>
           <Link to='/'>
             <Item>Home</Item>
@@ -32,6 +41,9 @@ const Navbar = () => {
             <Item>Post</Item>
           </Link>
         </Center>
+
+    {/* <------------------------------------ RIGHT ----------------------------------------> */}
+
         <Right>
           <Link to='/login'>
            <Btn>Log In</Btn>
@@ -40,7 +52,7 @@ const Navbar = () => {
            <Btn>Sign Up</Btn>
           </Link>
           <Link to='/settings'>
-           <Image src='https://images.pexels.com/photos/5044316/pexels-photo-5044316.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'/>
+           <Image src={currentUser?.profileImg}/>
           </Link>
         </Right>
         <Menu onClick={()=>setOpen(!open)}>
@@ -49,6 +61,7 @@ const Navbar = () => {
     </Container>
 
 {/* <------------------------------------------------------ SIDE MENU ---------------------------------------------------------------------> */}
+
 
 {    
   open && <SideMenu>
@@ -82,7 +95,7 @@ const Navbar = () => {
            <Btn onClick={()=>setOpen(!open)}>Sign Up</Btn>
           </Link>
           <Link to='/settings'>
-           <Image onClick={()=>setOpen(!open)} src='https://images.pexels.com/photos/5044316/pexels-photo-5044316.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'/>
+           <Image onClick={()=>setOpen(!open)} src={currentUser.profileImg}/>
           </Link>
         </SideRight>
     </SideMenu>
