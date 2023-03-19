@@ -1,30 +1,89 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
-
+import axios from 'axios'
+import {useNavigate} from 'react-router-dom'
+import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import app from '../firebase';
+import Popup from '../components/Popup';
 
 
 const Write = () => {
 
   const [title,setTitle] = useState("");
   const [desc,setDesc] = useState("");
+  const [tags,setTags] = useState([]);
   const [blogImg,setBlogImg] = useState("");
+  const [perc,setPerc] = useState(0);
+  const [error,setError] = useState(false);
+  const navigate = useNavigate();
 
+
+// <------------------------------------------------------------ IMAGE UPLOAD FUNCTION ----------------------------------------------------------------------->
+
+  const handleImageUpload = (file) => {
+      
+    const storage = getStorage();
+    const fileName = new Date().getTime() + file.name;
+    const storageRef = ref(storage,fileName);
+    const uploadTask = uploadBytesResumable(storageRef, file);
+
+    uploadTask.on('state_changed',
+    (snapshot) => {
+      const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+      setPerc(Math.round(progress));
+    }, 
+    (error) => {},
+    () => {
+      getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+        setBlogImg(downloadURL);
+      });
+    }
+);
+}
+
+// <------------------------------------------------------------ CREAT BLOG FUNCTION ----------------------------------------------------------------------->
+const handleCreateBlog = async (e) => {
+  e.preventDefault();
+  setError(false);
+  
+  try{
+    const res = await axios.post('/blogs',{
+      title,
+      desc,
+      blogImg,
+      tags
+    });
+    res.status === 200 && navigate(`/blog/${res.data._id}`);
+  }catch(err){
+     setError(true);
+  }
+}
 
   return (
+    <>
+    {error && <Popup/>}
     <Container>
        <Title>Create New Post</Title>
-       <Image src='https://images.pexels.com/photos/1475248/pexels-photo-1475248.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1' />
+       {
+          blogImg && <Image src={blogImg}/>
+       }
        <Form>
        <Label htmlFor='createFile'>
           <AddAPhotoIcon/>
           <p>Upload an Image</p>
+          {
+            perc > 0 && <p>{perc}%</p> 
+          }
        </Label>
 
        <Input 
        type='file' 
        id='createFile' 
-       style={{display:"none"}}/>
+       style={{display:"none"}}
+       accept="image/*"
+       onChange={(e)=>handleImageUpload(e.target.files[0])} 
+       />
 
        <Input 
        type='text' 
@@ -35,9 +94,17 @@ const Write = () => {
        placeholder="what's on your mind"
        onChange={(e)=>setDesc(e.target.value)} 
        />
-       <CreateBtn>Create</CreateBtn>
+
+       <Input 
+       type='text' 
+       placeholder='Separate tags using commas'
+       onChange={(e)=>setTags(e.target.value.split(','))} 
+       />
+
+       <CreateBtn onClick={handleCreateBlog}>Create</CreateBtn>
        </Form>
     </Container>
+    </>
   )
 }
 
@@ -133,3 +200,5 @@ border-radius: 0.5rem;
   color: white;
 }
 `;
+
+

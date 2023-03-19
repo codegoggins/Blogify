@@ -14,7 +14,6 @@ export const createBlog = async (req,res,next) => {
     }catch(err){
         next(err);
     }
-
 }
 
 // GET A BLOG

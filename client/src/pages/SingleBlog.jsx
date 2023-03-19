@@ -2,8 +2,10 @@ import React, { useEffect, useState } from 'react'
 import styled from 'styled-components';
 import CreateIcon from '@mui/icons-material/Create';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios'
+import Popup from '../components/Popup';
+import { useSelector } from 'react-redux';
 
 const SingleBlog = () => {
 
@@ -13,6 +15,10 @@ const SingleBlog = () => {
   const [blog,setBlog] = useState({});
   const [error,setError] = useState(false);
   const [author,setAuthor] = useState({});
+  const navigate = useNavigate();
+
+
+  const {currentUser} = useSelector((state)=> state.user);
 
   useEffect(()=>{
       const fetchBlogData = async () => {
@@ -36,24 +42,45 @@ const SingleBlog = () => {
         }
     );
 
+  //DELETE BLOG
+  const handleDeleteBlog = async () => {
+     try{
+      await axios.delete(`/blogs/${blog._id}`);
+      navigate('/');
+     }catch(err){
+       setError(true);
+     }
+  }
+
+     
   return (
+    <>
+    {
+      error && <Popup/>
+    }
     <Container>
+      
         <Image src={blog?.blogImg}/>
         <Details>
             <User>{author.name}</User>
             <Time>{formattedDate}</Time>
         </Details>
-        <UpdateAndDelete>
-          <Edit>
-            <CreateIcon/>
-          </Edit>
-          <DeleteBlog>
-            <DeleteIcon/>
-          </DeleteBlog>
-        </UpdateAndDelete>
+        {
+           currentUser._id === blog.userId && (
+          <UpdateAndDelete>
+            <Edit>
+              <CreateIcon/>
+            </Edit>
+            <DeleteBlog onClick={handleDeleteBlog}>
+              <DeleteIcon/>
+            </DeleteBlog>
+          </UpdateAndDelete>
+           )
+        }
         <Title>{blog?.title}</Title>
         <Desc>{blog?.desc}</Desc>
     </Container>
+    </>
   )
 }
 

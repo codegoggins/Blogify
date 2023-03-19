@@ -19,7 +19,8 @@ const Popup = () => {
            <CloseIcon fontSize='large'/>
         </Close>
         <Title>Error</Title>
-        <Message>Wrong Credentials !!</Message>
+        <Message>Oops ‼ Something Went Wrong</Message>
+        <Message>Refresh & Try Again</Message>
         </Modal>
         </>
       )
