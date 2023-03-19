@@ -1,6 +1,7 @@
 import Home from "./pages/Home";
 import {
   createBrowserRouter,
+  Navigate,
   Outlet,
   RouterProvider,
 } from "react-router-dom";
@@ -12,7 +13,7 @@ import Write from "./pages/Write";
 import SingleBlog from "./pages/SingleBlog";
 import Settings from "./pages/Settings";
 import MyPosts from "./pages/MyPosts";
-
+import { useSelector } from "react-redux";
 
 const Layout = () => {
   return (
@@ -22,6 +23,14 @@ const Layout = () => {
       <Footer/>
      </>
   )
+}
+
+const ProtectedRoute = ({children}) => {
+   const {currentUser} = useSelector((state)=>state.user);
+   if(!currentUser){
+      return <Navigate to='/'/>;
+   }
+   return children;
 }
 
 const router = createBrowserRouter([
@@ -43,7 +52,10 @@ const router = createBrowserRouter([
       },
       {
         path:'/write',
-        element:<Write/>
+        element:
+          <ProtectedRoute>
+              <Write/>
+          </ProtectedRoute>
       },
       {
         path:'/blog/:blogId',
@@ -51,11 +63,17 @@ const router = createBrowserRouter([
       },
       {
         path:'/settings',
-        element:<Settings/>
+        element:
+          <ProtectedRoute>
+              <Settings/>
+          </ProtectedRoute>
       },
       {
         path:'/myposts',
-        element:<MyPosts/>
+        element:
+          <ProtectedRoute>
+              <MyPosts/>
+          </ProtectedRoute>
       },
     ]
   },

@@ -50,12 +50,18 @@ const Navbar = () => {
           <Link to='/about'>
           <Item>About</Item>
           </Link>
+          {
+             currentUser &&
           <Link to='/write'>
             <Item>Write</Item>
           </Link>
+          }
+          {
+            currentUser && 
           <Link to='/myposts'>
             <Item>My Posts</Item>
           </Link>
+          }
         </Center>
 
     {/* <------------------------------------ RIGHT ----------------------------------------> */}
