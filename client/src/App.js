@@ -11,7 +11,6 @@ import Login from "./pages/Login";
 import Write from "./pages/Write";
 import SingleBlog from "./pages/SingleBlog";
 import Settings from "./pages/Settings";
-import About from "./pages/About";
 import MyPosts from "./pages/MyPosts";
 
 
@@ -45,10 +44,6 @@ const router = createBrowserRouter([
       {
         path:'/write',
         element:<Write/>
-      },
-      {
-        path:'/about',
-        element:<About/>
       },
       {
         path:'/blog/:blogId',

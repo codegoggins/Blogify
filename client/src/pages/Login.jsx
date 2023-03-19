@@ -4,16 +4,36 @@ import {Link, useNavigate} from 'react-router-dom'
 import {useDispatch} from 'react-redux'
 import { loginFailure, loginStart, loginSuccess } from '../redux/userSlice';
 import axios from 'axios'
+import Popup from '../components/Popup';
 
 const Login = () => {
 
   const [name,setName] = useState("");
   const [password,setPassword] = useState("");
+  const [error,setError] = useState(false);
+  const [msg,setMsg] = useState("");
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleSignIn = async (e) => {
       e.preventDefault();
+
+     
+      // <---------------------------------- ERROR HANDLING -------------------------------------------->
+  if(name === ""){
+    setError(true);
+    setMsg("Username Cannot Be Empty");
+    return;
+  }
+  if(password === ""){
+    setError(true);
+    setMsg("Password Cannot Be Empty");
+    return;
+  }
+
+// <---------------------------------- ERROR HANDLING --------------------------------------------> 
+
       dispatch(loginStart());
 
       try{
@@ -25,12 +45,18 @@ const Login = () => {
         dispatch(loginSuccess(res.data));
         navigate('/');
       }catch(err){
+         setError(true);
+         setMsg("Oops !! Something Went Wrong");
          dispatch(loginFailure());
       }
   }
 
 
   return (
+    <>
+    {
+        error && <Popup msg={msg} setError={setError}/>
+    }
     <Container>
         <Title>Log In</Title>
         <Form>
@@ -57,6 +83,7 @@ const Login = () => {
         </RegLink> 
         </Form>
     </Container>
+    </>
   )
 }
 

@@ -40,7 +40,7 @@ const Write = () => {
       });
     }
 );
-}
+} 
 
 // <------------------------------------------------------------ CREAT BLOG FUNCTION ----------------------------------------------------------------------->
 const handleCreateBlog = async (e) => {
@@ -80,6 +80,7 @@ const handleCreateBlog = async (e) => {
     res.status === 200 && navigate(`/blog/${res.data._id}`);
   }catch(err){
      setError(true);
+     setMsg("Oops !! Something Went Wrong");
   }
 }
  

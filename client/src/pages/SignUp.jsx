@@ -33,7 +33,10 @@ const SignUp = () => {
       const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
       setPerc(Math.round(progress));
     }, 
-    (error) => {},
+    (error) => {
+      setError(true);
+      setMsg("Cannot Upload Image !! Try Again Later");
+    },
     () => {
       getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
         setProfileImg(downloadURL);
@@ -83,7 +86,9 @@ const SignUp = () => {
         dispatch(signUpSuccess(res.data));
         navigate('/login');
       }catch(err){
-         dispatch(signUpFailure());
+        setError(true);
+        setMsg("Oops !! Something Went Wrong");
+        dispatch(signUpFailure());
       }
   }
 

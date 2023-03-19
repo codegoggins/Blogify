@@ -29,7 +29,7 @@ const MyPosts = () => {
     return (
        <>
        {
-         error && <Popup msg={msg}/>
+         error && <Popup msg={msg} setError={setError}/>
        }
       <Container> 
           <Heading>My Posts</Heading>

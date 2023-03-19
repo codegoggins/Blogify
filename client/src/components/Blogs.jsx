@@ -2,11 +2,13 @@ import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import PostCard from './PostCard'
 import axios from 'axios';
+import Popup from './Popup';
 
 const Blogs = () => {
 
   const [blogs,setBlogs] = useState([]);
   const [error,setError] = useState(false);
+  const [msg,setMsg] = useState("");
 
   useEffect(()=>{
     const fetchBlogs = async () => {
@@ -15,12 +17,17 @@ const Blogs = () => {
         setBlogs(response.data);
        }catch(err){
           setError(true);
+          setMsg("Oops !! Something Went Wrong");
        }
     }
     fetchBlogs();
   },[]);
 
   return (
+    <>
+      {
+        error && <Popup msg={msg} setError={error}/>
+      }
     <Container>
     <CardContainer>
         {
@@ -31,6 +38,7 @@ const Blogs = () => {
     </CardContainer>
     <ShowMoreBtn>Show More</ShowMoreBtn>
     </Container>
+    </>
   )
 }
 

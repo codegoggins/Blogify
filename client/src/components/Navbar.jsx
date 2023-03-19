@@ -5,12 +5,15 @@ import CloseIcon from '@mui/icons-material/Close';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../redux/userSlice';
+import Popup from './Popup';
 
 
 
 const Navbar = () => {
 
   const [open,setOpen]  = useState(false);
+  const [error,setError] = useState(false);
+  const [msg,setMsg] = useState("");
 
   const {currentUser} = useSelector((state)=> state.user);
   const dispatch = useDispatch();
@@ -19,12 +22,16 @@ const Navbar = () => {
      try{
         dispatch(logout());
      }catch(err){
-        console.log(err);  
+      setError(true);
+      setMsg("Oops !! Something Went Wrong");
      }
   }
 
   return (
     <>
+      {
+        error && <Popup msg={msg} setError={error}/>
+      }
     <Container>
 
     {/* <------------------------------------ LEFT ----------------------------------------> */}
@@ -47,7 +54,7 @@ const Navbar = () => {
             <Item>Write</Item>
           </Link>
           <Link to='/myposts'>
-            <Item>Post</Item>
+            <Item>My Posts</Item>
           </Link>
         </Center>
 

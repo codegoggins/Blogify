@@ -2,12 +2,14 @@ import React, { useEffect, useState } from 'react'
 import PostCard from './PostCard'
 import styled from 'styled-components'
 import axios from 'axios';
+import Popup from './Popup';
 
 
 const Featured = () => {
 
   const [blogs,setBlogs] = useState([]);
   const [error,setError] = useState(false);
+  const [msg,setMsg] = useState("");
 
   useEffect(()=>{
     const fetchBlogs = async () => {
@@ -22,6 +24,10 @@ const Featured = () => {
   },[]);
 
   return (
+    <>
+    {
+      error && <Popup msg={msg} setError={error}/>
+    }
     <Container>
         <Heading>Featured</Heading>
     <CardContainer>
@@ -32,6 +38,7 @@ const Featured = () => {
     }
     </CardContainer>
     </Container>
+    </>
   )
 }
 

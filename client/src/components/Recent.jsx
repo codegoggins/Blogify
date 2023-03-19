@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
+import Popup from './Popup';
 import RecentCard from './RecentCard';
 
 
@@ -8,6 +9,7 @@ const Recent = () => {
 
   const [blogs,setBlogs] = useState([]);
   const [error,setError] = useState(false);
+  const [msg,setMsg] = useState("");
 
   useEffect(()=>{
     const fetchBlogs = async () => {
@@ -16,6 +18,7 @@ const Recent = () => {
         setBlogs(response.data);
        }catch(err){
           setError(true);
+          setMsg("Oops !! Something Went Wrong");
        }
     }
     fetchBlogs();
@@ -23,6 +26,10 @@ const Recent = () => {
 
 
   return (
+    <>
+    {
+      error && <Popup msg={msg} setError={error}/>
+    }
       <Container>
           <Heading>Recent Blogs</Heading>
           <RecentBlogContainer>
@@ -33,6 +40,7 @@ const Recent = () => {
           }
           </RecentBlogContainer>
       </Container>
+    </>
   )
 }
 

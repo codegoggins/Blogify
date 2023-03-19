@@ -15,6 +15,8 @@ const SingleBlog = () => {
   const [blog,setBlog] = useState({});
   const [error,setError] = useState(false);
   const [author,setAuthor] = useState({});
+  const [msg,setMsg] = useState("");
+
   const navigate = useNavigate();
 
 
@@ -29,6 +31,7 @@ const SingleBlog = () => {
             setAuthor(authorRes.data);
           }catch(err){
               setError(true);
+              setMsg("Oops !! Something Went Wrong");
           }
       }
       fetchBlogData();
@@ -48,7 +51,8 @@ const SingleBlog = () => {
       await axios.delete(`/blogs/${blog?._id}`);
       navigate('/');
      }catch(err){
-       setError(true);
+      setError(true);
+      setMsg("Oops !! Something Went Wrong");
      }
   }
 
@@ -65,7 +69,7 @@ const SingleBlog = () => {
   return (
     <>
     {
-      error && <Popup/>
+      error && <Popup msg={msg} setError={error}/>
     }
     <Container>
       

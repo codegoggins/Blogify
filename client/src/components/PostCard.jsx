@@ -2,11 +2,13 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import {Link} from 'react-router-dom'
+import Popup from './Popup';
 
 const PostCard = ({blog}) => {
 
   const [author,setAuthor] = useState(null);
-  
+  const [error,setError] = useState(false);
+  const [msg,setMsg] = useState("");
 
   // FETCH BLOG FOR BLOG
   useEffect(()=>{
@@ -16,7 +18,8 @@ const PostCard = ({blog}) => {
           const response = await axios.get(`/users/${blog?.userId}`);
           setAuthor(response.data);
         } catch (error) {
-          console.error(error);
+          setError(true);
+          setMsg("Oops !! Something Went Wrong");
         }
       };
   
@@ -35,6 +38,10 @@ const PostCard = ({blog}) => {
 
   return (
     <Link to={`/blog/${blog?._id}`}>
+    <>
+      {
+        error && <Popup msg={msg} setError={error}/>
+      }
     <Container>
         <CardImg src={blog?.blogImg}/>
         <Tags>
@@ -50,6 +57,7 @@ const PostCard = ({blog}) => {
             <PostTime>{formattedDate}</PostTime>
         </CardDetail>
     </Container>
+    </>
     </Link>
   )
 }
