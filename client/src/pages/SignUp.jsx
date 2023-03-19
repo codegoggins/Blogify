@@ -4,25 +4,81 @@ import {Link,useNavigate} from 'react-router-dom'
 import {useDispatch} from 'react-redux'
 import { signUpFailure, signUpStart, signUpSuccess } from '../redux/userSlice';
 import axios from 'axios'
+import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import Popup from '../components/Popup'
+import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
+import { storage } from '../firebase';
 
 const SignUp = () => {
 
   const [name,setName] = useState("");
   const [email,setEmail] = useState("");
   const [password,setPassword] = useState("");
+  const [profileImg,setProfileImg] = useState("");
+  const [perc,setPerc] = useState(0);
+  const [error,setError] = useState(false);
+  const [msg,setMsg] = useState("");
+
+
+  // <------------------------------------------------------------ IMAGE UPLOAD FUNCTION ----------------------------------------------------------------------->
+
+  const handleImageUpload = (file) => {
+      
+    const fileName = new Date().getTime() + file.name;
+    const storageRef = ref(storage,fileName);
+    const uploadTask = uploadBytesResumable(storageRef, file);
+
+    uploadTask.on('state_changed',
+    (snapshot) => {
+      const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+      setPerc(Math.round(progress));
+    }, 
+    (error) => {},
+    () => {
+      getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+        setProfileImg(downloadURL);
+      });
+    }
+  );
+  }
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleSignUp = async (e) => {
       e.preventDefault();
+
+      // <---------------------------------- ERROR HANDLING -------------------------------------------->
+  if(name === ""){
+    setError(true);
+    setMsg("Name Cannot Be Empty");
+    return;
+  }
+  if(email === ""){
+    setError(true);
+    setMsg("Email Cannot Be Empty");
+    return;
+  }
+  if(password === ""){
+    setError(true);
+    setMsg("Password Cannot Be Empty");
+    return;
+  }
+  if(!profileImg){
+    setError(true);
+    setMsg("Please Upload An Image");
+    return;
+  }
+// <---------------------------------- ERROR HANDLING -------------------------------------------->
+
       dispatch(signUpStart());
 
       try{
         const res = await axios.post('/auth/signup',{
           name,
           email,
-          password
+          password,
+          profileImg
         });
         dispatch(signUpSuccess(res.data));
         navigate('/login');
@@ -32,6 +88,9 @@ const SignUp = () => {
   }
 
   return (
+    <>
+
+    {error && <Popup setError={setError} msg={msg}/>}
     <Container>
         <Title>Sign Up</Title>
         <Form>
@@ -51,6 +110,26 @@ const SignUp = () => {
         type='password'
         onChange={(e)=>setPassword(e.target.value)}  
         />
+
+        {
+          profileImg && <Image src={profileImg}/>
+        }
+        <Label htmlFor='createFile'>
+          <AddAPhotoIcon/>
+          <p>Upload an Image</p>
+          {
+            perc > 0 && <p>{perc}%</p> 
+          }
+        </Label>
+
+      <Input 
+       type='file' 
+       id='createFile' 
+       style={{display:"none"}}
+       accept="image/*"
+       onChange={(e)=>handleImageUpload(e.target.files[0])} 
+       />
+
         <Btn onClick={handleSignUp}>Sign Up</Btn>
 
         <LogLink>
@@ -65,6 +144,7 @@ const SignUp = () => {
         </LogLink>
         </Form>
     </Container>
+    </>
   )
 }
 
@@ -109,6 +189,15 @@ font-size: 0.8rem;
 }
 `;
 
+const Label = styled.label`
+color: #0ea5ea;
+display: flex;
+align-items: center;
+padding: 1rem;
+gap: 1rem;
+width: max-content;
+`;
+
 const Btn = styled.button`
 padding: 0.8rem 2rem;
 display: block;
@@ -142,4 +231,13 @@ gap: 0.5rem;
      flex-direction: column;
      align-items: center;
 }
+`;
+
+const Image = styled.img`
+object-fit: cover;
+border-radius: 50%;
+height: 2.5rem;
+width: 2.5rem;
+cursor: pointer;
+border:2.5px solid #0ea5ea;
 `;

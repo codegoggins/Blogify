@@ -5,6 +5,7 @@ import axios from 'axios'
 import {useNavigate} from 'react-router-dom'
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import Popup from '../components/Popup';
+import { storage } from '../firebase';
 
 
 const Write = () => {
@@ -23,7 +24,6 @@ const Write = () => {
 
   const handleImageUpload = (file) => {
       
-    const storage = getStorage();
     const fileName = new Date().getTime() + file.name;
     const storageRef = ref(storage,fileName);
     const uploadTask = uploadBytesResumable(storageRef, file);

@@ -53,18 +53,25 @@ background-color: #0f1729; /* set the background color with full opacity */
 color: #0ea5ea;
 position: fixed;
 height: 15rem;
-width: 25rem;
+width: 30rem;
 z-index: 30;
 top: 30%;
 left: 30%;
 padding: 0.5rem;
 opacity:1;
 
-@media(max-width:768px){
+@media(max-width:900px){
     height: 15rem;
-    width: 15rem;
+    width: 20rem;
     top:30%;
     left:10%;
+}
+
+@media(max-width:600px){
+    height: 15rem;
+    width: 26rem;
+    top:30%;
+    left:15%;
 }
 `;
 
