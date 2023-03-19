@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components'
 import CloseIcon from '@mui/icons-material/Close';
 import MenuIcon from '@mui/icons-material/Menu';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { logout } from '../redux/userSlice';
 
 
 
@@ -12,7 +13,15 @@ const Navbar = () => {
   const [open,setOpen]  = useState(false);
 
   const {currentUser} = useSelector((state)=> state.user);
+  const dispatch = useDispatch();
 
+  const handleLogout = () => {
+     try{
+        dispatch(logout());
+     }catch(err){
+        console.log(err);  
+     }
+  }
 
   return (
     <>
@@ -45,15 +54,26 @@ const Navbar = () => {
     {/* <------------------------------------ RIGHT ----------------------------------------> */}
 
         <Right>
-          <Link to='/login'>
-           <Btn>Log In</Btn>
-          </Link>
-          <Link to='/signup'>
-           <Btn>Sign Up</Btn>
-          </Link>
-          <Link to='/settings'>
-           <Image src={currentUser?.profileImg}/>
-          </Link>
+        {
+            currentUser ? (
+                <>
+                <Btn onClick={handleLogout}>Logout</Btn>
+                <Link to='/settings'>
+                <Image src={currentUser?.profileImg}/>
+                </Link>
+                </>
+
+            ) : (
+              <>
+              <Link to='/login'>
+              <Btn onClick={()=>setOpen(!open)}>Log In</Btn>
+              </Link>
+              <Link to='/signup'>
+              <Btn onClick={()=>setOpen(!open)}>Sign Up</Btn>
+              </Link>
+              </>
+            )
+          }
         </Right>
         <Menu onClick={()=>setOpen(!open)}>
             <MenuIcon fontSize='large'/>
@@ -88,15 +108,29 @@ const Navbar = () => {
             </Link>
           </SideCenter>
           <SideRight>
-          <Link to='/login'>
-           <Btn onClick={()=>setOpen(!open)}>Log In</Btn>
-          </Link>
-          <Link to='/signup'>
-           <Btn onClick={()=>setOpen(!open)}>Sign Up</Btn>
-          </Link>
-          <Link to='/settings'>
-           <Image onClick={()=>setOpen(!open)} src={currentUser.profileImg}/>
-          </Link>
+          {
+            currentUser ? (
+              <>
+                <Btn onClick={handleLogout}>Logout</Btn>
+                <Link to='/settings'>
+                <Image src={currentUser?.profileImg}/>
+                </Link>
+              </>
+            ) : (
+              <>
+              <Link to='/login'>
+              <Btn onClick={()=>setOpen(!open)}>Log In</Btn>
+              </Link>
+              <Link to='/signup'>
+              <Btn onClick={()=>setOpen(!open)}>Sign Up</Btn>
+              </Link>
+              <Link to='/settings'>
+              <Image onClick={()=>setOpen(!open)} src={currentUser.profileImg}/>
+              </Link>
+              </>
+            )
+          }
+
         </SideRight>
     </SideMenu>
   }
