@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components';
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 import {useDispatch} from 'react-redux'
 import { loginFailure, loginStart, loginSuccess } from '../redux/userSlice';
 import axios from 'axios'
@@ -10,7 +10,7 @@ const Login = () => {
   const [name,setName] = useState("");
   const [password,setPassword] = useState("");
   const dispatch = useDispatch();
-  
+  const navigate = useNavigate();
 
   const handleSignIn = async (e) => {
       e.preventDefault();
@@ -23,6 +23,7 @@ const Login = () => {
           password
         });
         dispatch(loginSuccess(res.data));
+        navigate('/');
       }catch(err){
          dispatch(loginFailure());
       }

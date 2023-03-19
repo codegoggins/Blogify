@@ -1,12 +1,35 @@
 import React, { useState } from 'react'
 import styled from 'styled-components';
-import {Link} from 'react-router-dom'
+import {Link,useNavigate} from 'react-router-dom'
+import {useDispatch} from 'react-redux'
+import { signUpFailure, signUpStart, signUpSuccess } from '../redux/userSlice';
+import axios from 'axios'
 
 const SignUp = () => {
 
   const [name,setName] = useState("");
   const [email,setEmail] = useState("");
   const [password,setPassword] = useState("");
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleSignUp = async (e) => {
+      e.preventDefault();
+      dispatch(signUpStart());
+
+      try{
+        const res = await axios.post('/auth/signup',{
+          name,
+          email,
+          password
+        });
+        dispatch(signUpSuccess(res.data));
+        navigate('/login');
+      }catch(err){
+         dispatch(signUpFailure());
+      }
+  }
 
   return (
     <Container>
@@ -28,7 +51,8 @@ const SignUp = () => {
         type='password'
         onChange={(e)=>setPassword(e.target.value)}  
         />
-        <Btn>Sign Up</Btn>
+        <Btn onClick={handleSignUp}>Sign Up</Btn>
+
         <LogLink>
         <span>
             Already have an account ?
