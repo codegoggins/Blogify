@@ -16,6 +16,7 @@ const Write = () => {
   const [blogImg,setBlogImg] = useState("");
   const [perc,setPerc] = useState(0);
   const [error,setError] = useState(false);
+  const [msg,setMsg] = useState("");
   const navigate = useNavigate();
 
 
@@ -45,7 +46,30 @@ const Write = () => {
 // <------------------------------------------------------------ CREAT BLOG FUNCTION ----------------------------------------------------------------------->
 const handleCreateBlog = async (e) => {
   e.preventDefault();
-  setError(false);
+
+// <---------------------------------- ERROR HANDLING -------------------------------------------->
+  if(title === ""){
+    setError(true);
+    setMsg("Title Cannot Be Empty");
+    return;
+  }
+  if(desc === ""){
+    setError(true);
+    setMsg("Description Cannot Be Empty");
+    return;
+  }
+  if(desc.length < 300){
+    setError(true);
+    setMsg("Description Cannot Be Less Than 300 Characters");
+    return;
+  }
+  if(!blogImg){
+    setError(true);
+    setMsg("Please Upload An Image");
+    return;
+  }
+
+// <---------------------------------- ERROR HANDLING -------------------------------------------->
   
   try{
     const res = await axios.post('/blogs',{
@@ -59,10 +83,11 @@ const handleCreateBlog = async (e) => {
      setError(true);
   }
 }
+ 
 
   return (
     <>
-    {error && <Popup/>}
+    {error && <Popup setError={setError} msg={msg}/>}
     <Container>
        <Title>Create New Post</Title>
        {

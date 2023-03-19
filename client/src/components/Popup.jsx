@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import CloseIcon from '@mui/icons-material/Close';
 
 
-const Popup = () => {
+const Popup = ({setError,msg}) => {
 
   const [open,setOpen] = useState(true);  
 
@@ -15,12 +15,15 @@ const Popup = () => {
         <Container>
         </Container>
         <Modal>
-        <Close onClick={()=>setOpen(!open)}>
+        <Close onClick={
+          ()=>{
+            setOpen(!open);
+            setError(false);
+          }}>
            <CloseIcon fontSize='large'/>
         </Close>
         <Title>Error</Title>
-        <Message>Oops ‼ Something Went Wrong</Message>
-        <Message>Refresh & Try Again</Message>
+        <Message>{msg}</Message>
         </Modal>
         </>
       )

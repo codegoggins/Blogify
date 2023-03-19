@@ -45,10 +45,19 @@ const SingleBlog = () => {
   //DELETE BLOG
   const handleDeleteBlog = async () => {
      try{
-      await axios.delete(`/blogs/${blog._id}`);
+      await axios.delete(`/blogs/${blog?._id}`);
       navigate('/');
      }catch(err){
        setError(true);
+     }
+  }
+
+  // UPDATE BLOG
+  const handleUpdateBlog = async () => {
+     try{
+
+     }catch(err){
+
      }
   }
 
@@ -62,15 +71,15 @@ const SingleBlog = () => {
       
         <Image src={blog?.blogImg}/>
         <Details>
-            <User>{author.name}</User>
+            <User>{author?.name}</User>
             <Time>{formattedDate}</Time>
         </Details>
         {
-           currentUser._id === blog.userId && (
+           currentUser?._id === blog?.userId && (
           <UpdateAndDelete>
-            <Edit>
+            {/* <Edit onClick={handleUpdateBlog}>
               <CreateIcon/>
-            </Edit>
+            </Edit> */}
             <DeleteBlog onClick={handleDeleteBlog}>
               <DeleteIcon/>
             </DeleteBlog>
