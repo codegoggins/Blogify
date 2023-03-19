@@ -113,12 +113,18 @@ const Navbar = () => {
             <Link to='/about'>
             <Item onClick={()=>setOpen(!open)}>About</Item>
             </Link>
+            {
+              currentUser &&
             <Link to='/write'>
               <Item onClick={()=>setOpen(!open)}>Write</Item>
             </Link>
+            }
+            {
+              currentUser &&
             <Link to=''>
-              <Item onClick={()=>setOpen(!open)}>Post</Item>
+              <Item onClick={()=>setOpen(!open)}>My Posts</Item>
             </Link>
+            }
           </SideCenter>
           <SideRight>
           {
