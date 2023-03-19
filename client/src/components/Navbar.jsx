@@ -124,9 +124,6 @@ const Navbar = () => {
               <Link to='/signup'>
               <Btn onClick={()=>setOpen(!open)}>Sign Up</Btn>
               </Link>
-              <Link to='/settings'>
-              <Image onClick={()=>setOpen(!open)} src={currentUser.profileImg}/>
-              </Link>
               </>
             )
           }
