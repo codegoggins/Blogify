@@ -100,7 +100,7 @@ height:auto;
 
 const PostImg = styled.div`
 flex: 2;
-height: 12rem;
+height: 15rem;
 
 img{
   width: 100%;

@@ -85,7 +85,7 @@ export const updateBlog = async (req,res,next) => {
 export const getRandomBlogs = async (req,res,next) => {
 
     try{
-        const blogs = await Blog.aggregate([{$sample:{size:10}}]);
+        const blogs = await Blog.aggregate([{$sample:{size:8}}]);
         return res.status(200).json(blogs);
     }catch(err){
         next(err);
@@ -96,7 +96,7 @@ export const getRandomBlogs = async (req,res,next) => {
 export const getTrendingBlogs = async (req,res,next) => {
 
     try{
-        const blogs = await Blog.find().sort({likes:-1});
+        const blogs = await Blog.find().sort({likes:-1}).limit(5);
         return res.status(200).json(blogs);
     }catch(err){
         next(err);
@@ -106,7 +106,7 @@ export const getTrendingBlogs = async (req,res,next) => {
 // GET RECENT BLOGS
 export const getRecentBlogs = async (req,res,next) => {
     try{
-        const blogs = await Blog.find().sort({createdAt:-1});
+        const blogs = await Blog.find().sort({createdAt:-1}).limit(5);
         return res.status(200).json(blogs);
     }catch(err){
         next(err);

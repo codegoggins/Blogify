@@ -168,7 +168,8 @@ border-radius: 0.5rem;
 `;
 const Image = styled.img`
 margin-top: 2rem;
-object-fit: cover;
+object-fit: contain;
+height: 30rem;
 width:100%;
 border-radius: 0.5rem;
 `;

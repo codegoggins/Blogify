@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import PostCard from './PostCard'
 import axios from 'axios';
 import Popup from './Popup';
+import { Link } from 'react-router-dom';
 
 const Blogs = () => {
 
@@ -36,7 +37,11 @@ const Blogs = () => {
            ))
         }
     </CardContainer>
-    <ShowMoreBtn>Show More</ShowMoreBtn>
+    <ShowMoreBtn>
+    <Link to='/all' style={{"color":"inherit"}}>
+    Show More
+    </Link>
+    </ShowMoreBtn>
     </Container>
     </>
   )
@@ -53,6 +58,7 @@ const Container = styled.div`
 display: flex;
 flex-direction: column;
 gap: 1rem;
+margin-bottom: 4rem;
 `;
 
 const CardContainer = styled.div`

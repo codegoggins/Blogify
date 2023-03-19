@@ -6,6 +6,11 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios'
 import Popup from '../components/Popup';
 import { useSelector } from 'react-redux';
+import ThumbUpOutlinedIcon from '@mui/icons-material/ThumbUpOutlined';
+import ThumbDownAltOutlinedIcon from '@mui/icons-material/ThumbDownAltOutlined';
+import ThumbUpIcon from '@mui/icons-material/ThumbUp';
+import ThumbDownAltIcon from '@mui/icons-material/ThumbDownAlt';
+
 
 const SingleBlog = () => {
 
@@ -78,6 +83,14 @@ const SingleBlog = () => {
             <User>{author?.name}</User>
             <Time>{formattedDate}</Time>
         </Details>
+        <LikeDislike>
+            <LikeBtn>
+                <ThumbUpOutlinedIcon/>
+            </LikeBtn>
+            <DislikeBtn>
+                <ThumbDownAltOutlinedIcon/>
+            </DislikeBtn>
+        </LikeDislike>
         {
            currentUser?._id === blog?.userId && (
           <UpdateAndDelete>
@@ -118,8 +131,8 @@ color: white;
 `;
 const Image = styled.img`
 border-radius: 1rem;
-height:40rem;
-object-fit:cover;
+height:25rem;
+object-fit:contain;
 `;
 
 const Details = styled.div`
@@ -148,3 +161,23 @@ cursor: pointer;
 `;
 
 const DeleteBlog = styled(Edit)``;
+
+const LikeDislike = styled.div`
+display: flex;
+gap: 1.5rem;
+align-items: center;
+`;
+
+const LikeBtn = styled.p`
+color: white;
+background-color: #0ea5ea;
+padding: 0.3rem;
+height:2.5rem;
+width:2.5rem;
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+`;
+
+const DislikeBtn = styled(LikeBtn)``;
