@@ -12,6 +12,7 @@ import Write from "./pages/Write";
 import SingleBlog from "./pages/SingleBlog";
 import Settings from "./pages/Settings";
 import About from "./pages/About";
+import MyPosts from "./pages/MyPosts";
 
 
 const Layout = () => {
@@ -56,6 +57,10 @@ const router = createBrowserRouter([
       {
         path:'/settings',
         element:<Settings/>
+      },
+      {
+        path:'/myposts',
+        element:<MyPosts/>
       },
     ]
   },

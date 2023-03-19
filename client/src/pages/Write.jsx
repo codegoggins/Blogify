@@ -4,7 +4,6 @@ import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
 import axios from 'axios'
 import {useNavigate} from 'react-router-dom'
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import app from '../firebase';
 import Popup from '../components/Popup';
 
 

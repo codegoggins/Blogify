@@ -46,7 +46,7 @@ const Navbar = () => {
           <Link to='/write'>
             <Item>Write</Item>
           </Link>
-          <Link to=''>
+          <Link to='/myposts'>
             <Item>Post</Item>
           </Link>
         </Center>
