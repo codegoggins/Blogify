@@ -4,7 +4,7 @@ import axios from 'axios';
 import PostCard from '../components/PostCard'
 import Popup from '../components/Popup';
 
-const Trending = () => {
+const Latest = () => {
     const [blogs,setBlogs] = useState([]);
     const [error,setError] = useState(false);
     const [msg,setMsg] = useState("");
@@ -13,7 +13,7 @@ const Trending = () => {
     useEffect(()=>{
       const fetchBlogs = async () => {
          try{
-          const response = await axios.get('/blogs/trending');
+          const response = await axios.get('/blogs/recent');
           setBlogs(response.data);
          }catch(err){
             setError(true);
@@ -29,7 +29,7 @@ const Trending = () => {
          error && <Popup msg={msg} setError={setError}/>
        }
       <Container> 
-          <Heading>Trending</Heading>
+          <Heading>Latest</Heading>
       <CardContainer>
       {
         blogs.map((blog)=>(
@@ -42,7 +42,7 @@ const Trending = () => {
     )
 }
 
-export default Trending
+export default Latest
 
 /*<------------------------------------------------------  CSS STYLING --------------------------------------------------------------------->*/
 

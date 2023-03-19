@@ -47,8 +47,11 @@ const Navbar = () => {
           <Link to='/'>
             <Item>Home</Item>
           </Link>
-          <Link to='/about'>
-          <Item>About</Item>
+          <Link to='/latest'>
+          <Item>Latest</Item>
+          </Link>
+          <Link to='/trending'>
+          <Item>Trending</Item>
           </Link>
           {
              currentUser &&
@@ -110,8 +113,11 @@ const Navbar = () => {
             <Link to='/'>
               <Item onClick={()=>setOpen(!open)}>Home</Item>
             </Link>
-            <Link to='/about'>
-            <Item onClick={()=>setOpen(!open)}>About</Item>
+            <Link to='/latest'>
+            <Item onClick={()=>setOpen(!open)}>Latest</Item>
+            </Link>
+            <Link to='/trending'>
+            <Item onClick={()=>setOpen(!open)}>Trending</Item>
             </Link>
             {
               currentUser &&

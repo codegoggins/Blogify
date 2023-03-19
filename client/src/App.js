@@ -15,6 +15,7 @@ import Settings from "./pages/Settings";
 import MyPosts from "./pages/MyPosts";
 import { useSelector } from "react-redux";
 import Trending from "./pages/Trending";
+import Latest from "./pages/Latest";
 
 const Layout = () => {
   return (
@@ -65,6 +66,10 @@ const router = createBrowserRouter([
       {
         path:'/trending',
         element:<Trending/>
+      },
+      {
+        path:'/latest',
+        element:<Latest/>
       },
       {
         path:'/settings',
