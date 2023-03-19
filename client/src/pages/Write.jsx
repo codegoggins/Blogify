@@ -1,10 +1,16 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
 
 
 
 const Write = () => {
+
+  const [title,setTitle] = useState("");
+  const [desc,setDesc] = useState("");
+  const [blogImg,setBlogImg] = useState("");
+
+
   return (
     <Container>
        <Title>Create New Post</Title>
@@ -14,9 +20,21 @@ const Write = () => {
           <AddAPhotoIcon/>
           <p>Upload an Image</p>
        </Label>
-       <Input type='file' id='createFile' style={{display:"none"}}/>
-       <Input type='text' placeholder='title'/>
-       <Desc placeholder="what's on your mind"/>
+
+       <Input 
+       type='file' 
+       id='createFile' 
+       style={{display:"none"}}/>
+
+       <Input 
+       type='text' 
+       placeholder='title'
+       onChange={(e)=>setTitle(e.target.value)} 
+       />
+       <Desc 
+       placeholder="what's on your mind"
+       onChange={(e)=>setDesc(e.target.value)} 
+       />
        <CreateBtn>Create</CreateBtn>
        </Form>
     </Container>
