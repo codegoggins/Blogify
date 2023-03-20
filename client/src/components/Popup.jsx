@@ -58,17 +58,12 @@ top: 30%;
 left: 30%;
 padding: 0.5rem;
 opacity:1;
+text-align: center;
 
-@media(max-width:900px){
-    height: 15rem;
-    width: 20rem;
-    top:30%;
-    left:10%;
-}
 
-@media(max-width:600px){
+@media(max-width:760px){
     height: 15rem;
-    width: 26rem;
+    width: 15rem;
     top:30%;
     left:15%;
 }
@@ -84,7 +79,7 @@ color: #0ea5ea;
 `
 
 const Message = styled.p`
-font-size: 1rem;
+font-size: 2rem;
 text-align: center;
 margin-top: 2rem;
 `;
