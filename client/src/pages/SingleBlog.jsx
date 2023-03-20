@@ -70,6 +70,35 @@ const SingleBlog = () => {
      }
   }
 
+    // LIKE BLOG
+    const handleLikeBlog = async () => {
+      try{
+         await axios.put(`/users/like/${blog?._id}`);
+         setBlog({
+           ...blog,
+           likes: [...blog?.likes, currentUser?._id],
+           dislikes: blog?.dislikes.filter((id) => id !== currentUser?._id),
+         });
+      }catch(err){
+       setError(true);
+       setMsg("Oops !! Something Went Wrong");
+      }
+   }
+
+   // DISLIKE BLOG
+   const handleDislikeBlog = async () => {
+      try{
+         await axios.put(`/users/dislike/${blog?._id}`);
+         setBlog({
+           ...blog,
+           dislikes: [...blog?.dislikes, currentUser?._id],
+           likes: blog?.likes.filter((id) => id !== currentUser?._id),
+         });
+      }catch(err){
+       setError(true);
+       setMsg("Oops !! Something Went Wrong");
+      }
+   }
      
   return (
     <>
@@ -77,19 +106,24 @@ const SingleBlog = () => {
       error && <Popup msg={msg} setError={error}/>
     }
     <Container>
-      
         <Image src={blog?.blogImg}/>
         <Details>
             <User>{author?.name}</User>
             <Time>{formattedDate}</Time>
         </Details>
         <LikeDislike>
-            <LikeBtn>
-                <ThumbUpOutlinedIcon/>
-            </LikeBtn>
-            <DislikeBtn>
-                <ThumbDownAltOutlinedIcon/>
-            </DislikeBtn>
+          <Like>
+          <LikeCount>{blog?.likes?.length}</LikeCount>
+          <LikeBtn onClick={handleLikeBlog}>
+            {blog?.likes?.includes(currentUser?._id) ? <ThumbUpIcon />: <ThumbUpOutlinedIcon />}
+          </LikeBtn>
+          </Like>
+          <Dislike>
+          <DislikeCount>{blog?.dislikes?.length}</DislikeCount>
+          <DislikeBtn onClick={handleDislikeBlog}>
+            {blog?.dislikes?.includes(currentUser?._id) ? <ThumbDownAltIcon /> : <ThumbDownAltOutlinedIcon />}
+          </DislikeBtn>
+          </Dislike>
         </LikeDislike>
         {
            currentUser?._id === blog?.userId && (
@@ -168,6 +202,16 @@ gap: 1.5rem;
 align-items: center;
 `;
 
+const Like = styled.div`
+color: white;
+display: flex;
+gap: 0.5rem;
+align-items: center;
+`;
+
+const Dislike = styled(Like)``;
+
+
 const LikeBtn = styled.p`
 color: white;
 background-color: #0ea5ea;
@@ -179,5 +223,10 @@ display: flex;
 align-items: center;
 justify-content: center;
 `;
+
+const LikeCount = styled.p``;
+
+const DislikeCount = styled(LikeCount)``;
+
 
 const DislikeBtn = styled(LikeBtn)``;
