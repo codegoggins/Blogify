@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components';
-import CreateIcon from '@mui/icons-material/Create';
+// import CreateIcon from '@mui/icons-material/Create';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios'
@@ -62,16 +62,21 @@ const SingleBlog = () => {
   }
 
   // UPDATE BLOG
-  const handleUpdateBlog = async () => {
-     try{
+  // const handleUpdateBlog = async () => {
+  //    try{
 
-     }catch(err){
+  //    }catch(err){
 
-     }
-  }
+  //    }
+  // }
 
     // LIKE BLOG
     const handleLikeBlog = async () => {
+      if(!currentUser){
+        setError(true);
+        setMsg("Log In !");
+        return;
+      }
       try{
          await axios.put(`/users/like/${blog?._id}`);
          setBlog({
@@ -87,6 +92,11 @@ const SingleBlog = () => {
 
    // DISLIKE BLOG
    const handleDislikeBlog = async () => {
+    if(!currentUser){
+      setError(true);
+      setMsg("Log In !");
+      return;
+    }
       try{
          await axios.put(`/users/dislike/${blog?._id}`);
          setBlog({
@@ -103,7 +113,7 @@ const SingleBlog = () => {
   return (
     <>
     {
-      error && <Popup msg={msg} setError={error}/>
+      error && <Popup msg={msg} setError={setError}/>
     }
     <Container>
         <Image src={blog?.blogImg}/>
@@ -148,7 +158,7 @@ export default SingleBlog
 
 
 
-{/* <------------------------------------------------------ SIDE MENU ---------------------------------------------------------------------> */}
+// {/* <------------------------------------------------------ SIDE MENU ---------------------------------------------------------------------> */}
 
 
 const Container = styled.div`

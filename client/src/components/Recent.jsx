@@ -28,7 +28,7 @@ const Recent = () => {
   return (
     <>
     {
-      error && <Popup msg={msg} setError={error}/>
+      error && <Popup msg={msg} setError={setError}/>
     }
       <Container>
           <Heading>Recent Blogs</Heading>

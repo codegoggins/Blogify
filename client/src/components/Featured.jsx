@@ -18,6 +18,7 @@ const Featured = () => {
         setBlogs(response.data);
        }catch(err){
           setError(true);
+          setMsg("Oops !! Something Went Wrong")
        }
     }
     fetchBlogs();
@@ -26,7 +27,7 @@ const Featured = () => {
   return (
     <>
     {
-      error && <Popup msg={msg} setError={error}/>
+      error && <Popup msg={msg} setError={setError}/>
     }
     <Container>
         <Heading>Featured</Heading>

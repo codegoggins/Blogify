@@ -22,7 +22,6 @@ const Popup = ({setError,msg}) => {
           }}>
            <CloseIcon fontSize='large'/>
         </Close>
-        <Title>Error</Title>
         <Message>{msg}</Message>
         </Modal>
         </>
@@ -83,11 +82,6 @@ display: flex;
 justify-content: flex-end;
 color: #0ea5ea;
 `
-
-const Title = styled.p`
-text-align: center;
-font-size: 1.5rem;
-`;
 
 const Message = styled.p`
 font-size: 1rem;

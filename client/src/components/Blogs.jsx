@@ -27,7 +27,7 @@ const Blogs = () => {
   return (
     <>
       {
-        error && <Popup msg={msg} setError={error}/>
+        error && <Popup msg={msg} setError={setError}/>
       }
     <Container>
     <CardContainer>
@@ -71,13 +71,6 @@ gap: 1.5rem;
   grid-template-columns:100%;
 }
 
-`;
-
-const Heading = styled.p`
-font-size: 2rem;
-color:#0ea5ea;
-font-weight: bold;
-text-align: center;
 `;
 
 

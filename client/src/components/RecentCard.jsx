@@ -42,7 +42,7 @@ const RecentCard = ({blog}) => {
     <Link to={`/blog/${blog?._id}`}>
       <>
       {
-        error && <Popup msg={msg} setError={error}/>
+        error && <Popup msg={msg} setError={setError}/>
       }
     <Container>
         <PostImg>

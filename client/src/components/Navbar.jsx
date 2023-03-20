@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
 import styled from 'styled-components'
 import CloseIcon from '@mui/icons-material/Close';
@@ -30,7 +30,7 @@ const Navbar = () => {
   return (
     <>
       {
-        error && <Popup msg={msg} setError={error}/>
+        error && <Popup msg={msg} setError={setError}/>
       }
     <Container>
 
@@ -136,7 +136,12 @@ const Navbar = () => {
           {
             currentUser ? (
               <>
-                <Btn onClick={handleLogout}>Logout</Btn>
+                <Btn onClick={
+                  ()=>{
+                       setOpen(!open);
+                       handleLogout();
+                  }
+                  }>Logout</Btn>
                 <Link to='/settings'>
                 <Image src={currentUser?.profileImg}/>
                 </Link>
