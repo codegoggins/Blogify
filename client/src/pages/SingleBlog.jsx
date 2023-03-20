@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components';
-// import CreateIcon from '@mui/icons-material/Create';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios'
@@ -61,14 +60,6 @@ const SingleBlog = () => {
      }
   }
 
-  // UPDATE BLOG
-  // const handleUpdateBlog = async () => {
-  //    try{
-
-  //    }catch(err){
-
-  //    }
-  // }
 
     // LIKE BLOG
     const handleLikeBlog = async () => {
@@ -138,9 +129,6 @@ const SingleBlog = () => {
         {
            currentUser?._id === blog?.userId && (
           <UpdateAndDelete>
-            {/* <Edit onClick={handleUpdateBlog}>
-              <CreateIcon/>
-            </Edit> */}
             <DeleteBlog onClick={handleDeleteBlog}>
               <DeleteIcon/>
             </DeleteBlog>

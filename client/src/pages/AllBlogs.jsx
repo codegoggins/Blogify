@@ -3,14 +3,12 @@ import styled from 'styled-components';
 import axios from 'axios';
 import PostCard from '../components/PostCard'
 import Popup from '../components/Popup';
-import {useSelector} from 'react-redux'
 
 const AllBlogs = () => {
     const [blogs,setBlogs] = useState([]);
     const [error,setError] = useState(false);
     const [msg,setMsg] = useState("");
 
-    const {currentUser} = useSelector((state)=>state.user);
   
     useEffect(()=>{
       const fetchBlogs = async () => {

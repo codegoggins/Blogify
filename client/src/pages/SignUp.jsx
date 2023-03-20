@@ -4,7 +4,7 @@ import {Link,useNavigate} from 'react-router-dom'
 import {useDispatch} from 'react-redux'
 import { signUpFailure, signUpStart, signUpSuccess } from '../redux/userSlice';
 import axios from 'axios'
-import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import {ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import Popup from '../components/Popup'
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
 import { storage } from '../firebase';

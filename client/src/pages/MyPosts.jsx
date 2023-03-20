@@ -24,7 +24,7 @@ const MyPosts = () => {
          }
       }
       fetchBlogs();
-    },[]);
+    },[currentUser._id]);
   
     return (
        <>

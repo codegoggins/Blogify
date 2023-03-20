@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import React, {useState } from 'react'
 import styled from 'styled-components'
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
 import axios from 'axios'
 import {useNavigate} from 'react-router-dom'
-import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import {ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import Popup from '../components/Popup';
 import { storage } from '../firebase';
 

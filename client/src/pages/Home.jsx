@@ -3,7 +3,6 @@ import Featured from '../components/Featured';
 import styled from 'styled-components';
 import Recent from '../components/Recent';
 import Blogs from '../components/Blogs';
-import Popup from '../components/Popup';
 
 
 const Home = () => {
@@ -15,7 +14,6 @@ const Home = () => {
        <Blogs/>
        <Recent/>
        <Featured/>
-       {/* <Popup/> */}
     </Container>
   )
 }
