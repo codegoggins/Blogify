@@ -1,12 +1,15 @@
 # blogify
 A Blog App created with React , NodeJS , MongoDB , ExpressJS , Firebase & Redux Toolkit.
 
-* FEATURES 
+## Features
 
---> Responsive Web Design
---> Like & Dislike Blog Functionality
---> Create & Delete Blog Functionality
---> Login / Signup Functionality using Redux Toolkit
+- Responsive Web Design using Styled Components
+- Like & Dislike Blog Functionality
+- Create & Delete Blog Functionality 
+- Upload Images Using Firebase Storage
+- Login / Signup Functionality using Redux Toolkit with Authentication using JWT & Refresh Tokens
+
+
 
 
 Blogify 
